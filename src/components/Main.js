@@ -64,27 +64,32 @@ const dummyS = [
     This is you entry point for your routes
 */
 const Main = () => {
-
+  //functions will be declared here to:
+	//add a campus
 	const addCampus = (campus)=> {
 		console.log(campus)
 	}
-
-
+  //add a student
+	const addStudent = (student)=> {
+		console.log(`Your new student is named...${student.firstName} ${student.lastName}!`)
+	}
+  //find an error someplace
 	console.log('troubleshoot log here');
-
-    return (
-			<Router>
-				<div className='app-container'>
-					<Nav />
-					<Routes>
-						<Route path='/campuses' element={<Campuses list={dummyC} addCampus={addCampus}/>} />
-						<Route path='/students' element={<Students list={dummyS}/>} />
-						<Route path='/campuses/:id' element={<SingleCampus campus={dummyC[0]}/>} />
-						<Route path='/students/:id' element={<SingleStudent student={dummyS[0]}/>} />
-					</Routes>
-				</div>
-			</Router>
-    );
+  //JSX should return the whole app with routes and links and everything! ...🤞🏻
+	return (
+		<Router>
+			<div className='app-container'>
+				{/*The navbar comes above the routes because it should be on top of the page, no matter which page is showing*/}
+				<Nav />
+				<Routes>
+					<Route path='/campuses' element={<Campuses list={dummyC} addCampus={addCampus} />} />
+					<Route path='/students' element={<Students list={dummyS} addStudent={addStudent} />} />
+					<Route path='/campuses/:id' element={<SingleCampus campus={dummyC[0]}/>} />
+					<Route path='/students/:id' element={<SingleStudent student={dummyS[0]}/>} />
+				</Routes>
+			</div>
+		</Router>
+	);
 };
 
 export default Main;
