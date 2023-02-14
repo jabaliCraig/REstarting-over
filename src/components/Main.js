@@ -71,9 +71,15 @@ const Main = () => {
 	useEffect(()=> {
 		const fetchStudents = async()=> {
 		  const studentAxiosRes = await axios.get('/api/students');
-			console.log('The studentAxiosRes is', studentAxiosRes);
+			console.log('The studentAxiosRes array is', studentAxiosRes.data);
 			setStudentList(studentAxiosRes.data);
 		}
+		const fetchCampuses = async()=> {
+			const campusAxiosRes = await axios.get('/api/Campuses');
+			console.log('The campusAxiosRes array is', campusAxiosRes.data);
+			setCampusList(campusAxiosRes.data);
+		}
+		fetchCampuses();
 		fetchStudents();
 	}, [])
 	
@@ -95,10 +101,10 @@ const Main = () => {
 				{/*The navbar comes above the routes because it should be on top of the page, no matter which page is showing*/}
 				<Nav />
 				<Routes>
-					<Route path='/campuses' element={<Campuses list={dummyC} addCampus={addCampus} />} />
+					<Route path='/campuses' element={<Campuses list={campusList} addCampus={addCampus} />} />
 					<Route path='/students' element={<Students list={studentList} addStudent={addStudent} />} />
-					<Route path='/campuses/:id' element={<SingleCampus campus={dummyC[0]}/>} />
-					<Route path='/students/:id' element={<SingleStudent student={dummyS[0]}/>} />
+					<Route path='/campuses/:id' element={<SingleCampus campus={campusList[1]}/>} />
+					<Route path='/students/:id' element={<SingleStudent student={studentList[1]}/>} />
 				</Routes>
 			</div>
 		</Router>
