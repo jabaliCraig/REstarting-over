@@ -67,14 +67,14 @@ const Main = () => {
   //functions will be declared here to:
 	//add a campus
 	const addCampus = (campus)=> {
-		console.log(campus)
+		console.log('A campus has been added: ', campus)
 	}
   //add a student
 	const addStudent = (student)=> {
-		console.log(`Your new student is named...${student.firstName} ${student.lastName}!`)
+		console.log('A student has been added: ', student)
 	}
   //find an error someplace
-	console.log('troubleshoot log here');
+	// console.log('troubleshoot log here');
   //JSX should return the whole app with routes and links and everything! ...🤞🏻
 	return (
 		<Router>
