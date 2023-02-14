@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AddCampus from './AddCampus';
 
-const Campuses = ({ list }) => {
+const Campuses = ({ list, addCampus }) => {
   return (
     <div>
+			<AddCampus onAdd={addCampus}/>
       {list.map(campus=>{
         return (
           <div className='campus-on-list' key={campus.id}>

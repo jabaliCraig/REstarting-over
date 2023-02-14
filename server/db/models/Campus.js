@@ -21,7 +21,7 @@ const Campus = db.define('campus', {
 			notEmpty: true,
 		},
 	},
-	text: {
+	description: {
 		type: Sequelize.TEXT,
 	}
 });

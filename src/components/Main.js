@@ -64,13 +64,20 @@ const dummyS = [
     This is you entry point for your routes
 */
 const Main = () => {
-	console.log(dummyS[0]);
+
+	const addCampus = (campus)=> {
+		console.log(campus)
+	}
+
+
+	console.log('troubleshoot log here');
+
     return (
 			<Router>
 				<div className='app-container'>
 					<Nav />
 					<Routes>
-						<Route path='/campuses' element={<Campuses list={dummyC}/>} />
+						<Route path='/campuses' element={<Campuses list={dummyC} addCampus={addCampus}/>} />
 						<Route path='/students' element={<Students list={dummyS}/>} />
 						<Route path='/campuses/:id' element={<SingleCampus campus={dummyC[0]}/>} />
 						<Route path='/students/:id' element={<SingleStudent student={dummyS[0]}/>} />
