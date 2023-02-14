@@ -5,6 +5,7 @@ const volleyball = require('volleyball');
 const app = express();
 
 app.use('/api/campuses', require('./api/campuses'));
+app.use('/api/students', require('./api/students'));//This line of code crashes the app... so🤔...how do we be SNEAKY????
 
 // static middleware
 app.use(express.static(path.join(__dirname, '..','public')))
