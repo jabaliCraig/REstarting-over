@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './Nav';
 import Students from './Students';
 import Campuses from './Campuses';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
+import axios from 'axios';
 
 const dummyC = [
     {
@@ -64,6 +65,18 @@ const dummyS = [
     This is you entry point for your routes
 */
 const Main = () => {
+	const [campusList, setCampusList] = useState([]);
+	const [studentList, setStudentList] = useState([]);
+
+	useEffect(()=> {
+		const fetchStudents = async()=> {
+		  const studentAxiosRes = await axios.get('/api/students');
+			console.log('The studentAxiosRes is', studentAxiosRes);
+			setStudentList(studentAxiosRes.data);
+		}
+		fetchStudents();
+	}, [])
+	
   //functions will be declared here to:
 	//add a campus
 	const addCampus = (campus)=> {
@@ -83,7 +96,7 @@ const Main = () => {
 				<Nav />
 				<Routes>
 					<Route path='/campuses' element={<Campuses list={dummyC} addCampus={addCampus} />} />
-					<Route path='/students' element={<Students list={dummyS} addStudent={addStudent} />} />
+					<Route path='/students' element={<Students list={studentList} addStudent={addStudent} />} />
 					<Route path='/campuses/:id' element={<SingleCampus campus={dummyC[0]}/>} />
 					<Route path='/students/:id' element={<SingleStudent student={dummyS[0]}/>} />
 				</Routes>
