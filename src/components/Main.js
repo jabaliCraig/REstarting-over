@@ -4,6 +4,7 @@ import Nav from './Nav';
 import Students from './Students';
 import Campuses from './Campuses';
 import SingleCampus from './SingleCampus';
+import SingleStudent from './SingleStudent';
 
 const dummyC = [
     {
@@ -71,7 +72,7 @@ const Main = () => {
 						<Route path='/campuses' element={<Campuses list={dummyC}/>} />
 						<Route path='/students' element={<Students list={dummyS}/>} />
 						<Route path='/campuses/:id' element={<SingleCampus campus={dummyC[0]}/>} />
-						{/*<Route path='/students/:id' element={<SingleStudent campus={dummyC[req.params.id -1]}/>} />*/}
+						<Route path='/students/:id' element={<SingleStudent student={dummyS[0]}/>} />
 					</Routes>
 				</div>
 			</Router>
