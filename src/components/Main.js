@@ -64,6 +64,7 @@ const dummyS = [
     This is you entry point for your routes
 */
 const Main = () => {
+	console.log(dummyS[0]);
     return (
 			<Router>
 				<div className='app-container'>

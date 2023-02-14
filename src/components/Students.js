@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Students = ({ list }) => {
   return (
@@ -6,9 +7,9 @@ const Students = ({ list }) => {
       {list.map(student=>{
         return (
           <div className='student-on-list' key={student.id}>
-            <span>{student.firstName} {student.lastName}</span>
+						<Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
           </div>
-        )
+				)
       })}
     </div>
   )

@@ -8,7 +8,7 @@ const SingleStudent = ({ student }) => {
 				<h1>{student.firstName} {student.lastName}</h1>
 			</div>
 			<div className='card-banner'>
-				<span>Campus: {student.campusId}</span><span>GPA: {student.gpa}</span>
+				<span>Campus: {student.campusId ? `${student.campusId}` : 'Please enroll this student at a campus to see their campus information.'}</span><span>GPA: {student.gpa}</span>
 			</div>
 			<div className='info'>
 				{student.email}
