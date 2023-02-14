@@ -1,6 +1,5 @@
-//straight hijack from Juke Lab
 const Sequelize = require('sequelize');
-const db = require('./db');
+const db = require('../db');
 
 const Student = db.define('student', {
 	firstName: {
@@ -38,4 +37,4 @@ const Student = db.define('student', {
 	}
 });
 
-module.exports = Student;
+module.exports = Student
