@@ -103,8 +103,8 @@ const Main = () => {
 				<Routes>
 					<Route path='/campuses' element={<Campuses list={campusList} addCampus={addCampus} />} />
 					<Route path='/students' element={<Students list={studentList} addStudent={addStudent} />} />
-					<Route path='/campuses/:id' element={<SingleCampus campus={campusList[1]}/>} />
-					<Route path='/students/:id' element={<SingleStudent student={studentList[1]}/>} />
+					<Route path='/campuses/:id' element={<SingleCampus campusList={campusList}/>} />
+					<Route path='/students/:id' element={<SingleStudent studentList={studentList}/>} />
 				</Routes>
 			</div>
 		</Router>

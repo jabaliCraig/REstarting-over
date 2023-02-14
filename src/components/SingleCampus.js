@@ -1,18 +1,22 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
 import CampusEnrollment from './CampusEnrollment';
 
-const SingleCampus = ({ campus }) => {
+const SingleCampus = ({ campusList }) => {
+	const { id } = useParams();
+	const ref = Number(id)-1;
+  console.log(campusList, ref, campusList[ref])
 	return (
 		<div className='campus'>
 			<div className='campus-top'>
-				<img src={campus.imageUrl} />
-				<h1>{campus.name}</h1>
+				<img src={campusList[ref].imageUrl} />
+				<h1>{campusList[ref].name}</h1>
 			</div>
 			<div className='campus-banner'>
-			  <span>{campus.address}</span><span>Enrollment: [insert number here]</span>
+			  <span>{campusList[ref].address}</span><span>Enrollment: [insert number here]</span>
 			</div>
 			<div className='info'>
-				{campus.description}
+				{campusList[ref].description}
 			</div>
 			{/*<CampusEnrollment />*/}
 		</div>
