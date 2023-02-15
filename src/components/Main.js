@@ -34,7 +34,14 @@ const Main = () => {
 	}
   //add a student
 	const addStudent = (student)=> {
-		console.log('A student has been added: ', student)
+		axios.post('/students', student)//this is one of the many places I might need to play with the syntax...`/studentSINGULAR` instead of `/students`, `{ student }` instead of `student`... who knows what else...
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+		setStudentList([...list, student])
 	}
 	//edit a campus
 	const editCampus = (campus)=> {
