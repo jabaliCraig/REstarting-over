@@ -50,12 +50,13 @@ const Main = () => {
 	}
 	//delete a campus
 	const deleteCampus = (campus)=> {
-		console.log('A campus has been deleteed: ', campus);
+		console.log('A campus has been deleted: ', campus);
+		//
 		//stuff happens
 	}
   //delete a student
 	const deleteStudent = (student)=> {
-		console.log('A student has been deleteed from: ', student);
+		console.log('A student has been deleted from: ', student);
 		//stuff happens
 	}
   ////find an error someplace//console.log('troubleshoot log here');
