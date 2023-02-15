@@ -62,7 +62,17 @@ const Students = () => {
 				<p></p>
 			</div>	
 			{/*...and a list of all the students as links to their individual pages */}
-
+			<Routes>
+				<Route 
+					path='/:id' 
+					element={<SingleStudent 
+						studentList={studentList}
+					/>} 
+				/>
+			</Routes>
+			<div className='pre-CSS-spacer'>
+				<p></p>
+			</div>	
       {studentList.map(student=>{
         return (
           <div 
@@ -89,14 +99,7 @@ const Students = () => {
           </div>
 				)
       })}
-			<Routes>
-				<Route 
-					path='/:id' 
-					element={<SingleStudent 
-						studentList={studentList}
-					/>} 
-				/>
-			</Routes>
+
     </div>
   )
 };
