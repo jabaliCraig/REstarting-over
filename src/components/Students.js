@@ -1,9 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import AddStudent from './AddStudent';
 import Button from './Button';
 
-const Students = ({ list, addStudent, editStudent, deleteStudent }) => {
+const Students = () => {
+	const [studentList, setStudentList] = useState([]);
+
+	useEffect(()=> {
+		const fetchStudents = async()=> {
+		  const studentAxiosRes = await axios.get('/api/students');
+			setStudentList(studentAxiosRes.data);
+		}
+		fetchStudents();
+	}, []);
+	//functions will be declared here to:
+	//add a student
+	const addStudent = (student)=> {
+		axios.post('/students', student)//this is one of the many places I might need to play with the syntax...`/studentSINGULAR` instead of `/students`, `{ student }` instead of `student`... who knows what else...
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+		setStudentList([...studentList, student])
+	}
+	//edit a student
+	const editStudent = (student)=> {
+		console.log('A student has been edited from: ', student);
+		//stuff happens
+		console.log('to: ', student)
+	}
+  //delete a student
+	const deleteStudent = (student)=> {
+		console.log('A student has been deleted from: ', student);
+		//stuff happens
+	}
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
   //JSX should render...
@@ -22,7 +55,7 @@ const Students = ({ list, addStudent, editStudent, deleteStudent }) => {
 				<p></p>
 			</div>	
 			{/*...and a list of all the students as links to their individual pages */}
-      {list.map(student=>{
+      {studentList.map(student=>{
         return (
           <div 
 					  className='student-on-list' 

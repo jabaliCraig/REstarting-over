@@ -12,19 +12,13 @@ import axios from 'axios';
 */
 const Main = () => {
 	const [campusList, setCampusList] = useState([]);
-	const [studentList, setStudentList] = useState([]);
 
 	useEffect(()=> {
-		const fetchStudents = async()=> {
-		  const studentAxiosRes = await axios.get('/api/students');
-			setStudentList(studentAxiosRes.data);
-		}
 		const fetchCampuses = async()=> {
 			const campusAxiosRes = await axios.get('/api/Campuses');
 			setCampusList(campusAxiosRes.data);
 		}
 		fetchCampuses();
-		fetchStudents();
 	}, [])
 	
   //functions will be declared here to:
@@ -32,40 +26,21 @@ const Main = () => {
 	const addCampus = (campus)=> {
 		console.log('A campus has been added: ', campus)
 	}
-  //add a student
-	const addStudent = (student)=> {
-		axios.post('/students', student)//this is one of the many places I might need to play with the syntax...`/studentSINGULAR` instead of `/students`, `{ student }` instead of `student`... who knows what else...
-		.then(function (response) {
-			console.log(response);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-		setStudentList([...list, student])
-	}
+
 	//edit a campus
 	const editCampus = (campus)=> {
 		console.log('A campus has been edited: ', campus);
 		//stuff happens
 		console.log('to: ', campus)
 	}
-  //edit a student
-	const editStudent = (student)=> {
-		console.log('A student has been edited from: ', student);
-		//stuff happens
-		console.log('to: ', student)
-	}
+
 	//delete a campus
 	const deleteCampus = (campus)=> {
 		console.log('A campus has been deleted: ', campus);
 		//
 		//stuff happens
 	}
-  //delete a student
-	const deleteStudent = (student)=> {
-		console.log('A student has been deleted from: ', student);
-		//stuff happens
-	}
+
   ////find an error someplace//console.log('troubleshoot log here');
   //JSX should return the whole app with routes and links and everything! ...🤞🏻
 	return (
@@ -85,12 +60,7 @@ const Main = () => {
 					/>
 					<Route 
 					  path='/students' 
-						element={<Students 
-						  list={studentList} 
-							addStudent={addStudent} 
-							editStudent={editStudent}
-							deleteStudent={deleteStudent} 
-						/>} 
+						element={<Students />} 
 					/>
 					<Route 
 					  path='/campuses/:id' 
@@ -98,12 +68,12 @@ const Main = () => {
 						  campusList={campusList}
 						/>} 
 					/>
-					<Route 
+					{/* <Route 
 					  path='/students/:id' 
 						element={<SingleStudent 
 						  studentList={studentList}
 						/>} 
-					/>
+					/> */}
 				</Routes>
 			</div>
 		</Router>
