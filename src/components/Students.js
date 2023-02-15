@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AddStudent from './AddStudent';
 import Button from './Button';
 
-const Students = ({ list, addStudent }) => {
+const Students = ({ list, addStudent, editStudent, deleteStudent }) => {
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
   //JSX should render...
@@ -24,8 +24,27 @@ const Students = ({ list, addStudent }) => {
 			{/*...and a list of all the students as links to their individual pages */}
       {list.map(student=>{
         return (
-          <div className='student-on-list' key={student.id}>
-						<Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
+          <div 
+					  className='student-on-list' 
+						key={student.id}
+					>
+						<Link 
+						  to={`/students/${student.id}`}
+					  >
+							{student.firstName} {student.lastName}
+						</Link>
+						<Button 
+							text={'Update Student'}
+							onClick={editStudent} 
+							textColor={'black'}
+							backColor={'silver'}
+						/>
+						<Button 
+							text={'X'}
+							onClick={deleteStudent} 
+							textColor={'ghostwhite'}
+							backColor={'firebrick'}
+						/>
           </div>
 				)
       })}
