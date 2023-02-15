@@ -59,7 +59,7 @@ const Main = () => {
 						/>} 
 					/>
 					<Route 
-					  path='/students' 
+					  path='/students/*' 
 						element={<Students />} 
 					/>
 					<Route 
@@ -68,12 +68,6 @@ const Main = () => {
 						  campusList={campusList}
 						/>} 
 					/>
-					{/* <Route 
-					  path='/students/:id' 
-						element={<SingleStudent 
-						  studentList={studentList}
-						/>} 
-					/> */}
 				</Routes>
 			</div>
 		</Router>

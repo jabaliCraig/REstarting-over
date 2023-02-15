@@ -2,7 +2,8 @@ const router = require('express').Router();
 
 const db = require('../db/db');
 const Student = require('../db/models/Student');
-
+//routes for...
+//get requests needing ALL students
 router.get('/', async(req, res, next)=> {
 	try{
 		const studentList = await Student.findAll();
@@ -12,7 +13,7 @@ router.get('/', async(req, res, next)=> {
 		next(e);
 	}
 });
-
+//get requests needing ONE student
 router.get('/:id', async(req, res, next) => {
   try{
     const thisStudent = await Student.findByPk(req.params.id);
@@ -23,11 +24,10 @@ router.get('/:id', async(req, res, next) => {
     next(e);
   }
 });
-
-// POST /api/todos
-router.post('/', async (req, res, next) => {
+//
+router.post('/students', async (req, res, next) => {
   try {
-    res.status(201).send(await Todo.create(req.body));
+    res.status(201).send(await Student.create(req.body));
   } catch (error) {
     next(error);
   }

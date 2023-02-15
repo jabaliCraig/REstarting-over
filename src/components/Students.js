@@ -1,30 +1,37 @@
+//import magical stuff from magical land
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+//import my less magical stuff
+import SingleStudent from './SingleStudent';
 import AddStudent from './AddStudent';
 import Button from './Button';
+// const db = require('../../server/db/db');//this line crashes the app
 
 const Students = () => {
+	//set the state to determine which students will be displayed
 	const [studentList, setStudentList] = useState([]);
-
+  //fetch all students from the database and set them as the state
+	const fetchStudents = async()=> {
+		const studentAxiosRes = await axios.get('/api/students');
+		setStudentList(studentAxiosRes.data);
+	}
+  //run fetchStudents immediately upon loading
 	useEffect(()=> {
-		const fetchStudents = async()=> {
-		  const studentAxiosRes = await axios.get('/api/students');
-			setStudentList(studentAxiosRes.data);
-		}
 		fetchStudents();
 	}, []);
-	//functions will be declared here to:
+	//have other functions to:
 	//add a student
-	const addStudent = (student)=> {
-		axios.post('/students', student)//this is one of the many places I might need to play with the syntax...`/studentSINGULAR` instead of `/students`, `{ student }` instead of `student`... who knows what else...
+	const addStudent = async (student)=> {
+		await axios.post('/students', student)//this is one of the many places I might need to play with the syntax...`/studentSINGULAR` instead of `/students`, `{ student }` instead of `student`... who knows what else...
 		.then(function (response) {
 			console.log(response);
+			fetchStudents();
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
-		setStudentList([...studentList, student])
 	}
 	//edit a student
 	const editStudent = (student)=> {
@@ -55,6 +62,7 @@ const Students = () => {
 				<p></p>
 			</div>	
 			{/*...and a list of all the students as links to their individual pages */}
+
       {studentList.map(student=>{
         return (
           <div 
@@ -81,6 +89,14 @@ const Students = () => {
           </div>
 				)
       })}
+			<Routes>
+				<Route 
+					path='/:id' 
+					element={<SingleStudent 
+						studentList={studentList}
+					/>} 
+				/>
+			</Routes>
     </div>
   )
 };
