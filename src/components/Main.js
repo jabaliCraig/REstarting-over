@@ -28,15 +28,15 @@ const Main = () => {
 	}
 
 	//edit a campus
-	const editCampus = (campus)=> {
-		console.log('A campus has been edited: ', campus);
+	const editCampus = (EVENT)=> {
+		console.log('An edit EVENT has been requested: ', campus);
 		//stuff happens
-		console.log('to: ', campus)
+		console.log('to: ', EVENT)
 	}
 
 	//delete a campus
-	const deleteCampus = (campus)=> {
-		console.log('A campus has been deleted: ', campus);
+	const deleteCampus =  (EVENT)=> {
+		console.log('A delete EVENT has been requested: ', campus);
 		//
 		//stuff happens
 	}

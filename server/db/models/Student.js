@@ -37,4 +37,10 @@ const Student = db.define('student', {
 	}
 });
 
+Student.findUnassigned = async() => {
+	const students = await Student.findAll();
+	console.log(students.map((student => ({ firstName: student.firstName, lastName: student.lastName, id: student.id}))))
+}
+
+// Student.findUnassigned()
 module.exports = Student
