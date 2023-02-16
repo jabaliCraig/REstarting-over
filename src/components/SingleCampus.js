@@ -13,12 +13,12 @@ const SingleCampus = ({ campusList }) => {
 				<h1>{campusList[ref].name}</h1>
 			</div>
 			<div className='campus-banner'>
-			  <span>{campusList[ref].address}</span><span>Enrollment: [insert number here]</span>
+			  <span>{campusList[ref].address}</span><span>Enrollment: {campusList[ref].students.length}</span>
 			</div>
 			<div className='info'>
 				{campusList[ref].description}
 			</div>
-			{/*<CampusEnrollment />*/}
+			<CampusEnrollment students={campusList[ref].students}/>
 		</div>
 	)
 }
