@@ -13,6 +13,12 @@ const campuses = [
 		description: 'Assemble your own team of champions and let the games begin with LEGO® Ideas Table Football (21337). Focus like a champion to build this scaled-down version of a retro Table Football game, featuring color-coded sliding knobs behind each goal to keep score. The set includes 22 LEGO minifigures (11 for each team), with 44 different heads and 43 hairstyle elements so you can customize the look of each character. (READ MORE at https://www.lego.com/en-us/product/table-football-21337)',
 		imageUrl: 'https://img.brickowl.com/files/image_cache/large/lego-table-football-set-21337-15.jpg'
 	}, 
+	{
+		name: "Destiny's Bounty",
+		address: '70618 LEGO St.',
+		description: "Construct Wu’s huge ninja training base, Destiny’s Bounty. This highly detailed THE LEGO® NINJAGO® MOVIE™ model consists of 3 modular levels and features a double-headed dragon figurehead, decorated sails, wind-up-and-release anchors, dojo area for ninja training, a bathroom and Wu’s bedroom in the hull. This amazing model also includes hidden weapons including the ultimate weapon— the laser-style pointer, plus 7 minifigures with assorted weapons to bolster the exciting role-play possibilities. READ MORE at https://www.lego.com/en-us/product/destiny-s-bounty-70618",
+		imageUrl: 'https://img.brickowl.com/files/image_cache/large/lego-destiny-s-bounty-set-70618-15.jpg'
+	}, 
 ];
 const students = [
 	{
@@ -38,6 +44,14 @@ const students = [
 		imageUrl: 'https://img.brickowl.com/files/image_cache/medium/lego-peter-parker-red-jacket-minifigure-28.jpg',
 		gpa: 4.0,
 		campusId: 1,
+	}, 
+	{
+		firstName: 'Emma',
+		lastName: 'Gronkowski',
+		email: 'orange@goalie.net',
+		imageUrl: 'https://img.brickowl.com/files/image_cache/medium/lego-soccer-goalie-female-orange-minifigure-1.jpg',
+		gpa: 3.7,
+		campusId: 2,
 	}, 
 	{
 		firstName: 'Godric',
