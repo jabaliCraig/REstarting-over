@@ -1,7 +1,6 @@
 //import magical stuff from magical land
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 //import my less magical stuff
 import SingleStudent from './SingleStudent';
@@ -23,29 +22,26 @@ const Students = () => {
 	}, []);
 	//have other functions to:
 	//add a student
-	const addStudent = async (student)=> {
-		await axios.post('/students', student)//this is one of the many places I might need to play with the syntax...`/studentSINGULAR` instead of `/students`, `{ student }` instead of `student`... who knows what else...
-		.then(function (response) {
-			console.log(response);
-			fetchStudents();
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	}
+	const addStudent = async (student)=> {console.log('addStudent function is running.  Whoopie....')}
 	//edit a student
-	const editStudent = (student)=> {
-		console.log('A student has been edited from: ', student);
+	const editStudent = (event)=> {
+		console.log('An editing EVENT has been requested: ', event);
 		//stuff happens
-		console.log('to: ', student)
+		console.log('to: ', event)
 	}
   //delete a student
-	const deleteStudent = (student)=> {
-		console.log('A student has been deleted from: ', student);
+	const deleteStudent = (event)=> {
+		console.log('A deleting EVENT has been requested: ', event);
 		//stuff happens
 	}
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
+
+
+
+
+
+
   //JSX should render...
   return (
     <div>
@@ -60,16 +56,17 @@ const Students = () => {
 			{/*...some pre-CSS spacing that I'll hopefully remember to take away later */}
 			<div className='pre-CSS-spacer'>
 				<p></p>
+			</div>
+			<Routes>
+			  <Route 
+				  path='/:id' 
+					element={<SingleStudent list={studentList}/>} 
+				/>
+			</Routes>	
+			<div className='pre-CSS-spacer'>
+				<p></p>
 			</div>	
 			{/*...and a list of all the students as links to their individual pages */}
-			<Routes>
-				<Route 
-					path='/:id' 
-					element={<SingleStudent 
-						studentList={studentList}
-					/>} 
-				/>
-			</Routes>
 			<div className='pre-CSS-spacer'>
 				<p></p>
 			</div>	
@@ -79,9 +76,7 @@ const Students = () => {
 					  className='student-on-list' 
 						key={student.id}
 					>
-						<Link 
-						  to={`/students/${student.id}`}
-					  >
+						<Link to={`/students/${student.id}`}>
 							{student.firstName} {student.lastName}
 						</Link>
 						<Button 
