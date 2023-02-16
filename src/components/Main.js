@@ -7,9 +7,7 @@ import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
 import axios from 'axios';
 
-/* 
-    This is you entry point for your routes
-*/
+
 const Main = () => {
 	const [campusList, setCampusList] = useState([]);
 

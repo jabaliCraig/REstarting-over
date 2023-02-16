@@ -27,7 +27,8 @@ router.get('/:id', async(req, res, next) => {
 //
 router.post('/', async (req, res, next) => {
   try {
-    res.status(201).send(await Student.create(req.body));
+		const newStudent = await Student.create(req.body);
+    res.status(201).send(newStudent);
   } catch (error) {
     next(error);
   }
@@ -43,12 +44,18 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// DELETE /api/todos/:id
+// DELETE /api/students/:id
 router.delete('/:id', async (req, res, next) => {
+	const { id } = req.params;
+	if(isNaN(Number(id))){
+		res.sendStatus(400);
+		return
+	}
+	//Felicia is the student to be deleted.  Bye, Felicia!
+	const Felicia = await Student.findByPk(id);
   try {
-    const todo = await Todo.findByPk(req.params.id);
-    await todo.destroy();
-    res.send(todo);
+    await Felicia.destroy();
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
