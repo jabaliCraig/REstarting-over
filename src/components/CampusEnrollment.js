@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import Students from './Students';
 
 const CampusEnrollment = ({ campus, students }) => {
-	console.log('This campus is');
-	console.log(campus);
-	console.log('The students is');
-	console.log(students);
+	// console.log('This campus is');
+	// console.log(campus);
+	// console.log('The students are');
+	// console.log(students);
 	return (
 		<div>
 			{students.length===0 ?

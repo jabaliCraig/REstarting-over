@@ -3,9 +3,17 @@ import { useParams } from "react-router-dom";
 import CampusEnrollment from './CampusEnrollment';
 
 const SingleCampus = ({ campusList }) => {
+	console.log('The list is:');
+	console.log(campusList);
+
+	
 	const { id } = useParams();
 	const ref = Number(id)-1;
-  // console.log(campusList, ref, campusList[ref])//for testing purposes ONLY
+
+	console.log('This campus is:');
+	console.log(campusList[ref]);
+
+
 	return (
 		<div className='campus'>
 			<div className='campus-top'>
