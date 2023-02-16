@@ -5,7 +5,7 @@ import CampusEnrollment from './CampusEnrollment';
 const SingleCampus = ({ campusList }) => {
 	const { id } = useParams();
 	const ref = Number(id)-1;
-  console.log(campusList, ref, campusList[ref])
+  // console.log(campusList, ref, campusList[ref])//for testing purposes ONLY
 	return (
 		<div className='campus'>
 			<div className='campus-top'>
@@ -18,7 +18,7 @@ const SingleCampus = ({ campusList }) => {
 			<div className='info'>
 				{campusList[ref].description}
 			</div>
-			<CampusEnrollment students={campusList[ref].students}/>
+			<CampusEnrollment campus={campusList[ref]} students={campusList[ref].students}/>
 		</div>
 	)
 }

@@ -65,7 +65,8 @@ const Students = () => {
 			</Routes>	
 			<div className='pre-CSS-spacer'>
 				<p></p>
-			</div>	
+			</div>
+			<h3>All students enrolled in ACME schools:</h3>	
 			{/*...and a list of all the students as links to their individual pages */}
 			<div className='pre-CSS-spacer'>
 				<p></p>

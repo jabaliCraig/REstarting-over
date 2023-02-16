@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const SingleStudent = ({ list }) => {
+	console.log('The list is:');
+	console.log(list);
+
 	const params = useParams();
 	const index = Number(params.id)-1;
+
+	console.log('This student is:');
+	console.log(list[index]);
 
 	return (
 		<div className='student-card'>
@@ -13,7 +19,14 @@ const SingleStudent = ({ list }) => {
 				<h1>{list[index].firstName} {list[index].lastName}</h1>
 			</div>
 			<div className='card-banner'>
-				<span>Campus: {list[index].campusId ? `${list[index].campusId}` : 'Please enroll this student at a campus to see their campus information.'}</span><span>GPA: {list[index].gpa}</span>
+				<span>Campus: {list[index].campusId===null ? 
+				  'Please enroll this student at a campus to see their campus information.' :
+					<Link to={`/campuses/${list[index].campusId}`}>
+						{list[index].campusId}
+					</Link>
+					}				
+				</span>
+				<span>GPA: {list[index].gpa}</span>
 			</div>
 			<div className='info'>
 				{list[index].email}
