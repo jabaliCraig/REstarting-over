@@ -9,35 +9,35 @@ import axios from 'axios';
 
 
 const Main = () => {
-	const [campusList, setCampusList] = useState([]);
+	// const [campusList, setCampusList] = useState([]);
 
-	useEffect(()=> {
-		const fetchCampuses = async()=> {
-			const campusAxiosRes = await axios.get('/api/Campuses');
-			setCampusList(campusAxiosRes.data);
-		}
-		fetchCampuses();
-	}, [])
+	// useEffect(()=> {
+	// 	const fetchCampuses = async()=> {
+	// 		const campusAxiosRes = await axios.get('/api/Campuses');
+	// 		setCampusList(campusAxiosRes.data);
+	// 	}
+	// 	fetchCampuses();
+	// }, [])
 	
   //functions will be declared here to:
-	//add a campus
-	const addCampus = (campus)=> {
-		console.log('A campus has been added: ', campus)
-	}
+	// //add a campus
+	// const addCampus = (campus)=> {
+	// 	console.log('A campus has been added: ', campus)
+	// }
 
-	//edit a campus
-	const editCampus = (EVENT)=> {
-		console.log('An edit EVENT has been requested: ', campus);
-		//stuff happens
-		console.log('to: ', EVENT)
-	}
+	// //edit a campus
+	// const editCampus = (EVENT)=> {
+	// 	console.log('An edit EVENT has been requested: ', campus);
+	// 	//stuff happens
+	// 	console.log('to: ', EVENT)
+	// }
 
-	//delete a campus
-	const deleteCampus =  (EVENT)=> {
-		console.log('A delete EVENT has been requested: ', campus);
-		//
-		//stuff happens
-	}
+	// //delete a campus
+	// const deleteCampus =  (EVENT)=> {
+	// 	console.log('A delete EVENT has been requested: ', campus);
+	// 	//
+	// 	//stuff happens
+	// }
 
   ////find an error someplace//console.log('troubleshoot log here');
   //JSX should return the whole app with routes and links and everything! ...🤞🏻
@@ -47,7 +47,7 @@ const Main = () => {
 				{/*The navbar comes above the routes because it should be on top of the page, no matter which page is showing*/}
 				<Nav />
 				<Routes>
-					<Route 
+					{/* <Route 
 					  path='/campuses' 
 						element={<Campuses 
 						  list={campusList} 
@@ -55,17 +55,21 @@ const Main = () => {
 							editCampus={editCampus}
 							deleteCampus={deleteCampus}
 						/>} 
+					/> */}
+					<Route 
+					  path='/campuses/*' 
+						element={<Campuses />} 
 					/>
 					<Route 
 					  path='/students/*' 
 						element={<Students />} 
 					/>
-					<Route 
+					{/* <Route 
 					  path='/campuses/:id' 
 						element={<SingleCampus 
 						  campusList={campusList}
 						/>} 
-					/>
+					/> */}
 				</Routes>
 			</div>
 		</Router>

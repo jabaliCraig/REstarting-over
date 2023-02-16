@@ -1,6 +1,7 @@
+//import magical stuff from magical land
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+
 
 const SingleStudent = ({ list }) => {
 	console.log('The list is:');
