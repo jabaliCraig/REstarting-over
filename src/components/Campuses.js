@@ -1,5 +1,7 @@
+//import magical stuff from magical land
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+//import my less magical stuff
 import AddCampus from './AddCampus';
 import Button from './Button';
 

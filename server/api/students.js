@@ -6,7 +6,7 @@ const Student = require('../db/models/Student');
 //get requests needing ALL students
 router.get('/', async(req, res, next)=> {
 	try{
-		const studentList = await Student.findAll();
+		const studentList = await Student.myFindAll();
 		res.send(studentList);
 	}
 	catch(err){

@@ -22,7 +22,7 @@ const SingleStudent = ({ list }) => {
 				<span>Campus: {list[index].campusId===null ? 
 				  'Please enroll this student at a campus to see their campus information.' :
 					<Link to={`/campuses/${list[index].campusId}`}>
-						{list[index].campusId}
+						{list[index].campus.name}
 					</Link>
 					}				
 				</span>
