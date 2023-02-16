@@ -1,33 +1,27 @@
-//import magical stuff from magical land
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-//import my less magical stuff
+import React from 'react';
+import { useParams } from "react-router-dom";
 import CampusEnrollment from './CampusEnrollment';
 
 const SingleCampus = ({ list }) => {
-	console.log('The list is:');
-	console.log(list);
+  // console.log(list)
+	// console.log(list.filter(campus => campus.id === Number(useParams().id))[0])
 
-	const params = useParams();
-	const index = Number(params.id)-1;
-
-	console.log('This campus is:');
-	console.log(list[index]);
+	const campus = list.filter(campus => campus.id === Number(useParams().id))[0];
 
 
 	return (
-		<div className='campus'>
+		<div className='campus'>Hi there!
 			<div className='campus-top'>
-				<img src={list[index].imageUrl} />
-				<h1>{list[index].name}</h1>
+				<img src={campus.imageUrl} />
+				<h1>{campus.name}</h1>
 			</div>
 			<div className='campus-banner'>
-			  <span>{list[index].address}</span><span>Enrollment: {list[index].students.length}</span>
+			  <span>{campus.address}</span><span>Enrollment: {campus.students.length}</span>
 			</div>
 			<div className='info'>
-				{list[index].description}
+				{campus.description}
 			</div>
-			<CampusEnrollment campus={list[index]} students={list[index].students}/>
+			<CampusEnrollment campus={campus} students={campus.students}/>
 		</div>
 	)
 }

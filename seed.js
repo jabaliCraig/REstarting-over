@@ -18,6 +18,12 @@ const campuses = [
 		address: '70618 LEGO St.',
 		description: "Construct Wu’s huge ninja training base, Destiny’s Bounty. This highly detailed THE LEGO® NINJAGO® MOVIE™ model consists of 3 modular levels and features a double-headed dragon figurehead, decorated sails, wind-up-and-release anchors, dojo area for ninja training, a bathroom and Wu’s bedroom in the hull. This amazing model also includes hidden weapons including the ultimate weapon— the laser-style pointer, plus 7 minifigures with assorted weapons to bolster the exciting role-play possibilities. READ MORE at https://www.lego.com/en-us/product/destiny-s-bounty-70618",
 		imageUrl: 'https://img.brickowl.com/files/image_cache/large/lego-destiny-s-bounty-set-70618-15.jpg'
+	},  
+	{
+		name: "Endgame Final Battle",
+		address: '76192 LEGO St.',
+		description: "Bring classic Marvel movie action to life with the LEGO® Marvel Avengers: Endgame Final Battle (76192) playset. READ MORE at https://www.lego.com/en-us/product/avengers-endgame-final-battle-76192",
+		imageUrl: 'https://img.brickowl.com/files/image_cache/large/lego-avengers-endgame-final-battle-set-76192-15.jpg'
 	}, 
 ];
 const students = [
@@ -58,7 +64,14 @@ const students = [
 		lastName: 'Gryffindor',
 		email: 'og_lion@hogwarts.min',
 		imageUrl: 'https://img.brickowl.com/files/image_cache/medium/lego-godric-gryffindor-minifigure-28.jpg',
-		gpa: 3.2
+		gpa: 3.2,
+	}, 
+	{
+		firstName: 'Amber',
+		lastName: 'Grant',
+		email: 'sales@daily-bugle.com',
+		imageUrl: 'https://img.brickowl.com/files/image_cache/medium/lego-amber-grant-minifigure-28.jpg',
+		gpa: 2.8,
 	}, 
 ];
 
