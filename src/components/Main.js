@@ -8,8 +8,6 @@ import Campuses from './Campuses';
 import Students from './Students';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
-import UpdateCampus from './UpdateCampus';
-import UpdateStudent from './UpdateStudent';
 
 //our main component will...
 const Main = () => {
@@ -21,7 +19,7 @@ const Main = () => {
 		const fetchCampuses = async()=> {
 			const campusAxiosRes = await axios.get('/api/campuses');
 			setCampusList(campusAxiosRes.data);
-		}		
+		}
 		const fetchStudents = async()=> {
 			const studentAxiosRes = await axios.get('/api/students');
 			setStudentList(studentAxiosRes.data);
@@ -30,84 +28,67 @@ const Main = () => {
 		fetchStudents();
 	}, [])
 	
-  //CRUDdy functions will be declared here to:
-	//add a campus
+  //N🚫 reading here! These functions are just CUD
+  //🌟C🌟reate:
 	const addCampus = async(campus)=> {
-		// console.log('The addStudent function is running, and the student to be added is');
-		console.log(campus);
 		try{
-			const newStudent = await axios.post('/campuses', campus);//...or something
+			//Here's the BRAIN-BUSTER:
+			const newCampus = await axios.post('/campuses', campus);//...or something... The problem is that if I console log newCampus, it's just a bunch of mush. I can see the data when I console log `newCampus.config.data`, but it's in a form I don't know how do get to. And it definitely doesn't update the database.🧠💥💨
 			setCampusList([...campusList, campus]);
-			// console.log('A student has been added: ', newStudent.config.data);
 		}
 		catch(err){
 			console.log(err);
 		}
 	}
-	//add a student
 	const addStudent = async(student)=> {
-		console.log('The addStudent function is running, and the student to be added is');
-		console.log(student);
+		// SEE NOTES ON `addCampus` ABOVE
 		try{
-			await axios.post('/api/students', student);//...or something
+			const newStudent = await axios.post('/students', student);
 			setStudentList([...studentList, student]);
-			// console.log('A student has been added: ', newStudent.config.data);
 		}
 		catch(err){
 			console.log(err);
 		}
 	}
 
-	//edit a campus
+  //🌟U🌟pdate:
 	const editCampus = (id)=> {
 		console.log('You would like to edit the event to be: ', id);
 		console.log('TOO BAD, SUCKA!!!!!')
 	}
-	//edit a student
 	const editStudent = (input)=> {
 		console.log('You would like to edit the event to be ', input);
 		console.log('TOO BAD, SUCKA!!!!!')
 	}
+	//disenroll student from campus
+	const disenroll = (id)=> {
+		console.log('Pretend we did something so that the student with this id is no longer at this campus:', id)
+	}
 
-
-
-
-
-	//delete a campus
+	//🌟D🌟emolerize!:
 	const deleteCampus = async(id)=> {
 		await axios.delete(`/api/campuses/${id}`);
 		console.log('A campus has been deleted.');
 		setCampusList(campusList.filter(campus=> campus.id !== id));
 	}
-
-	//delete a student
 	const deleteStudent = async(id)=> {
 		await axios.delete(`/api/students/${id}`)
 		console.log('A student has been deleted.');
 		setStudentList(studentList.filter(student=> student.id !== id));
 	}
 
-	//disenroll student from campus
-	const disenroll = (id)=> {
-		console.log('Pretend we did something so that the student with this id is no longer at this campus:', id)
-	}
-
-
-
-
-
   //JSX should return the whole app with routes and links and everything! ...🤞🏻
 	return (
 		<Router>
 			<div className='app-container'>
-				{/*The navbar comes above the routes because it should be on top of the page, no matter which page is showing*/}
 				<Nav />
+				{/*The navbar comes above the routes because it should be on top of the page, no matter which page is showing*/}
 				<Routes>
 					<Route 
 					  path='/campuses' 
 						element={<Campuses 
 						  list={campusList} 
-							addCampus={addCampus} 
+							onAdd={addCampus} 
 							onDelete={deleteCampus}
 						/>} 
 					/>
@@ -116,13 +97,14 @@ const Main = () => {
 						element={<Students 
 						  list={studentList} 
 							onAdd={addStudent} 
-							onDelete={deleteStudent}
+							// onDelete={deleteStudent} > SEE NOTE IN 'SingleStudent.js'
 						/>} 
 					/>
 					<Route 
 					  path='/campuses/:id' 
 						element={<SingleCampus 
 						  list={campusList}
+							onDelete={deleteCampus}
 							onEdit={editCampus}
 							onRemove={disenroll}
 						/>} 
@@ -131,23 +113,10 @@ const Main = () => {
 					  path='/students/:id' 
 						element={<SingleStudent 
 						  list={studentList}
+							onDelete={deleteStudent}
 							onEdit={editStudent}
 						/>} 
 					/>
-					{/* <Route 
-					  path='/campuses/edit/:id' 
-						element={<UpdateCampus 
-							list={campusList}
-							onEdit={editCampus} 
-						/>} 
-					/>
-					<Route 
-					  path='/students/edit/:id' 
-						element={<UpdateStudent 
-						  list={studentList}
-							onEdit={editStudent}
-						/>} 
-					/> */}
 				</Routes>
 			</div>
 		</Router>
@@ -155,42 +124,3 @@ const Main = () => {
 };
 
 export default Main;
-
-/*
-//PASTE DUMP
-	//set the state to determine which students will be displayed
-	const [studentList, setStudentList] = useState([]);
-  //fetch all students from the database and set them as the state
-	const fetchStudents = async()=> {
-		const studentAxiosRes = await axios.get('/api/students');
-		setStudentList(studentAxiosRes.data);
-	}
-  //run fetchStudents immediately upon loading
-	useEffect(()=> {
-		fetchStudents();
-	}, []);
-	//have other functions to:
-	//add a student
-	const addStudent = async (student)=> {console.log('addStudent function is running.  Whoopie....')}
-	//edit a student
-	const editStudent = (event)=> {
-		console.log('An editing EVENT has been requested: ', event);
-		//stuff happens
-		console.log('to: ', event)
-	}
-  //delete a student
-	const deleteStudent = (event)=> {
-		console.log('A deleting EVENT has been requested: ', event);
-		//stuff happens
-	}
-			<Routes>
-			  <Route 
-				  path='/:id' 
-					element={<SingleStudent list={studentList}/>} 
-				/>
-			</Routes>	
-			<div className='pre-CSS-spacer'>
-				<p></p>
-			</div>
-			<h3>All students enrolled in ACME schools:</h3>	
-*/

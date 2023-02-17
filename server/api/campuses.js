@@ -7,15 +7,22 @@ const { Campus, Student } = require('../db')
 //🌟C🌟reate:
 router.post('/', async (req, res, next) => {
 	try {
-		const newStudent = await Student.create(req.body);
-		res.status(201).send(newStudent);
+		const newCampus = await Campus.create({
+			where: {
+				name: req.body.name,
+				address: req.body.address,
+				description: req.body.description,
+				imageUrl: req.body.imageUrl
+			}
+		});
+		res.status(201).send(newCampus);
 	} catch (error) {
 		next(error);
 	}
 });
 
 //🌟R🌟ead:
-//(c)ollectively)
+//(collectively)
 router.get('/', async(req, res, next) => {
   try{
     const campusList = await Campus.myFindAll();//`myFindAll` is defined in ../db/index.js

@@ -7,7 +7,7 @@ import UpdateCampus from './UpdateCampus';
 import Button from './Button';
 
 //our component will...
-const SingleCampus = ({ list, onEdit, onRemove }) => {
+const SingleCampus = ({ list, onDelete, onEdit, onRemove }) => {
   //...declare THIS campus as THE campus, based on the url
 	const campus = list.filter(campus => campus.id === Number(useParams().id))[0];
 
@@ -28,6 +28,7 @@ const SingleCampus = ({ list, onEdit, onRemove }) => {
 			{showEdit && 
 				<UpdateCampus
 					campus={campus}
+					onDelete={onDelete}
 					onEdit={onEdit}
 				/>}
 			{/* some pre-CSS spacing that I'll hopefully remember to take away later */}

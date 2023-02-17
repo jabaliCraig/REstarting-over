@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 //our component will...
-const UpdateCampus = ({ campus, onEdit }) => {
+const UpdateCampus = ({ campus, onEdit, onDelete }) => {
 	//set local state variables for each part of the form
 	const [name, setName] = useState('');
 	const [address, setAddress] = useState('');

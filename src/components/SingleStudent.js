@@ -6,7 +6,7 @@ import UpdateStudent from './UpdateStudent';
 import Button from './Button';
 
 //our component will...
-const SingleStudent = ({ list, onEdit }) => {
+const SingleStudent = ({ list, onDelete, onEdit }) => {
   //...declare THIS student as THE student, based on the url
 	const student = list.filter(student => student.id === Number(useParams().id))[0];
 
@@ -27,6 +27,7 @@ const SingleStudent = ({ list, onEdit }) => {
 			{showEdit && 
 				<UpdateStudent
 					student={student}
+					onDelete={onDelete}
 					onEdit={onEdit}
 				/>}
 			{/* some pre-CSS spacing that I'll hopefully remember to take away later */}
@@ -39,6 +40,13 @@ const SingleStudent = ({ list, onEdit }) => {
 					<img src={student.imageUrl} alt='A lovely image of our student'/>
 					<h1>{student.firstName} {student.lastName}</h1>
 				</div>
+				<div className='info'>
+					Email: <span style={{fontWeight: 'bold'}}>{student.email}</span>
+					
+				</div>
+				<div className='pre-CSS-spacer'>
+					<p></p>
+				</div>	
 				<div className='card-banner'>
 					<span>Campus: {student.campusId===null ? 
 						'Please enroll this student at a campus to see their campus information.' :
@@ -47,10 +55,7 @@ const SingleStudent = ({ list, onEdit }) => {
 						</Link>
 						}				
 					</span>
-					<span>GPA: {student.gpa}</span>
-				</div>
-				<div className='info'>
-					{student.email}
+					<span> </span>GPA: {student.gpa}
 				</div>
 				{/*#LIFEGOALS: also add a delete button here so that someone can delete a student while looking at THAT student instead of having to go back through the whole list of ALL students */}
 			</div>

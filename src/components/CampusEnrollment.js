@@ -14,21 +14,22 @@ const CampusEnrollment = ({ campus, students, onRemove }) => {
 			{students.length===0 ?
 			  `Please enroll students at ${campus.name} to see their information here.` :
 				<div className='students-list' >	
+						<ul>
 					{students.map((student)=> {
 						return(
-							<ul>
 								<li key={student.id}>
 									<Link to={`/students/${student.id}`}>
 										{student.firstName} {student.lastName}
 									</Link>
+									<span> </span>
 									<Button 
 									  text='AWAY WITH YOU!'
 										onClick={()=> onRemove(student.id)}
 									/>
 								</li>
-							</ul>
 						)
 					})}
+					</ul>
 				</div>
 			}
 		</div>

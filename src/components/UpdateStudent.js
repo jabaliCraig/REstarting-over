@@ -1,8 +1,10 @@
 //import magic from outta space
 import React, { useState } from 'react';
+import { redirect } from 'react-router-dom';
+import Button from './Button';
 
 //our component will...
-const UpdateStudent = ({ student, onEdit }) => {
+const UpdateStudent = ({ student, onEdit, onDelete }) => {
 	//set local state variables for each part of the form
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -56,64 +58,75 @@ const UpdateStudent = ({ student, onEdit }) => {
 
 	//...then JSX should return the form with a 'form-control' section for each input field and a submit button
 	return (
-		<form className='add-form' onSubmit={onSubmit}>
-			<div className='form-control'>
-				<p><label><span style={{fontWeight: 'bold'}}>Current Student First Name:</span> <small>{student.firstName}</small></label></p>
-				<input 
-					type='text' 
-					placeholder='update first name to?' 
-					value={firstName} 
-					onChange={(e)=> setFirstName(e.target.value)} 
-			  />
-			</div>
-
-			<div className='form-control'>
-				<p><label><span style={{fontWeight: 'bold'}}>Current Student Last Name:</span> <small>{student.lastName}</small></label></p>
-				<input 
-					type='text' 
-					placeholder='update last name to?' 
-					value={lastName} 
-					onChange={(e)=> setLastName(e.target.value)} 
-				/>
-			</div>
-
-			<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Student Email Address: </span><small>{student.email}</small></label></p>
+		<div className='menu'>
+			<Button 
+				text='Delete this student from ACME'
+				textColor='ghostwhite'
+				backColor='firebrick'
+				onClick={()=> {
+					onDelete(student.id);
+				  //HOW DO I DO THIS PART??? redirect('/students');
+				}}
+			/>
+			<form className='add-form' onSubmit={onSubmit}>
+				<div className='form-control'>
+					<p><label><span style={{fontWeight: 'bold'}}>Current Student First Name:</span> <small>{student.firstName}</small></label></p>
 					<input 
 						type='text' 
-						placeholder='update email address to?' 
-						value={email} 
-						onChange={(e)=> setEmail(e.target.value)} 
+						placeholder='update first name to?' 
+						value={firstName} 
+						onChange={(e)=> setFirstName(e.target.value)} 
 					/>
+				</div>
 
-			</div>
-
-			<div className='form-control'>
-				<p><label><span style={{fontWeight: 'bold'}}>Current Student GPA: </span><small>{student.gpa}</small></label></p>
-				<input 
-					type='text' 
-					placeholder='update GPA to?' 
-					value={gpa} 
-					onChange={(e)=> setGPA(e.target.value)} 
-				/>
-			</div>
-				
-			<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Student Image URL: </span><small>{student.imageUrl}</small></label></p>
+				<div className='form-control'>
+					<p><label><span style={{fontWeight: 'bold'}}>Current Student Last Name:</span> <small>{student.lastName}</small></label></p>
 					<input 
 						type='text' 
-						placeholder='update image URL to?' 
-						value={imageUrl} 
-						onChange={(e)=> setImageUrl(e.target.value)} 
+						placeholder='update last name to?' 
+						value={lastName} 
+						onChange={(e)=> setLastName(e.target.value)} 
 					/>
-			</div>
+				</div>
 
-			<div className='pre-CSS-spacer'>
-						<p></p>
-			</div>	
+				<div className='form-control'>
+						<p><label><span style={{fontWeight: 'bold'}}>Current Student Email Address: </span><small>{student.email}</small></label></p>
+						<input 
+							type='text' 
+							placeholder='update email address to?' 
+							value={email} 
+							onChange={(e)=> setEmail(e.target.value)} 
+						/>
 
-			<input type='submit' value='Save' />
-		</form>
+				</div>
+
+				<div className='form-control'>
+					<p><label><span style={{fontWeight: 'bold'}}>Current Student GPA: </span><small>{student.gpa}</small></label></p>
+					<input 
+						type='text' 
+						placeholder='update GPA to?' 
+						value={gpa} 
+						onChange={(e)=> setGPA(e.target.value)} 
+					/>
+				</div>
+					
+				<div className='form-control'>
+						<p><label><span style={{fontWeight: 'bold'}}>Current Student Image URL: </span><small>{student.imageUrl}</small></label></p>
+						<input 
+							type='text' 
+							placeholder='update image URL to?' 
+							value={imageUrl} 
+							onChange={(e)=> setImageUrl(e.target.value)} 
+						/>
+				</div>
+
+				<div className='pre-CSS-spacer'>
+							<p></p>
+				</div>	
+
+				<input type='submit' value='Save' />
+			</form>
+		</div>
 	)
 }
 
