@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//import Craig from Craig
 import Students from './Students';
+import Button from './Button';
 
-const CampusEnrollment = ({ campus, students }) => {
+const CampusEnrollment = ({ campus, students, onRemove }) => {
 	// console.log('This campus is');
 	// console.log(campus);
 	// console.log('The students are');
@@ -19,6 +21,10 @@ const CampusEnrollment = ({ campus, students }) => {
 									<Link to={`/students/${student.id}`}>
 										{student.firstName} {student.lastName}
 									</Link>
+									<Button 
+									  text='AWAY WITH YOU!'
+										onClick={()=> onRemove(student.id)}
+									/>
 								</li>
 							</ul>
 						)

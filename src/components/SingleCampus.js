@@ -7,7 +7,7 @@ import UpdateCampus from './UpdateCampus';
 import Button from './Button';
 
 //our component will...
-const SingleCampus = ({ list, onEdit }) => {
+const SingleCampus = ({ list, onEdit, onRemove }) => {
   //declare THIS campus as THE campus, based on the url
 	const campus = list.filter(campus => campus.id === Number(useParams().id))[0];
 
@@ -47,7 +47,11 @@ const SingleCampus = ({ list, onEdit }) => {
 					{campus.description}
 				</div>
 				{/* AND all the students enrolled in this campus!*/}
-				<CampusEnrollment campus={campus} students={campus.students}/>
+				<CampusEnrollment 
+				  campus={campus} 
+					students={campus.students/*SURELY THIS CAN'T BE NECESSARY.......... */}
+					onRemove={onRemove}
+					/>
 			</div>
 		</div>
 	)

@@ -63,8 +63,8 @@ const Main = () => {
 		console.log('TOO BAD, SUCKA!!!!!')
 	}
 	//edit a student
-	const editStudent = (id)=> {
-		console.log('You would like to edit the event with the id: ', id);
+	const editStudent = (input)=> {
+		console.log('You would like to edit the event to be ', input);
 		console.log('TOO BAD, SUCKA!!!!!')
 	}
 
@@ -84,6 +84,11 @@ const Main = () => {
 		await axios.delete(`/api/students/${id}`)
 		console.log('A student has been deleted.');
 		setStudentList(studentList.filter(student=> student.id !== id));
+	}
+
+	//disenroll student from campus
+	const disenroll = (id)=> {
+		console.log('Pretend we did something so that the student with this id is no longer at this campus:', id)
 	}
 
 
@@ -119,6 +124,8 @@ const Main = () => {
 					  path='/campuses/:id' 
 						element={<SingleCampus 
 						  list={campusList}
+							onEdit={editCampus}
+							onRemove={disenroll}
 						/>} 
 					/>
 					<Route 
