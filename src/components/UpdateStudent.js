@@ -1,11 +1,13 @@
 //import magic from outta space
 import React, { useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 
 //our component will...
 const UpdateStudent = ({ student, onEdit, onDelete }) => {
-	//set local state variables for each part of the form
+	//...make this for later:
+	const navigate = useNavigate();
+	//...set local state variables for each part of the form
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -15,6 +17,7 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 
 	
 					{/*#LIFEGOALS: also add a delete button here so that someone can delete a student while looking at THAT student instead of having to go back through the whole list of ALL students */}
+
 
 
 
@@ -63,9 +66,9 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 				text='Delete this student from ACME'
 				textColor='ghostwhite'
 				backColor='firebrick'
-				onClick={()=> {
+				onClick={(e)=> {
 					onDelete(student.id);
-				  //HOW DO I DO THIS PART??? redirect('/students');
+					navigate('/students')
 				}}
 			/>
 			<form className='add-form' onSubmit={onSubmit}>
