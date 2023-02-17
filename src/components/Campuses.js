@@ -6,7 +6,7 @@ import AddCampus from './AddCampus';
 import Button from './Button';
 // const db = require('../../server/db/db');//this line crashes the app
 
-const Campuses = ({ list, addCampus, editCampus, deleteCampus }) => {
+const Campuses = ({ list, addCampus, editCampus, onDelete }) => {
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
   //JSX should render...
@@ -48,7 +48,7 @@ const Campuses = ({ list, addCampus, editCampus, deleteCampus }) => {
 						/>
 						<Button 
 							text={'X'}
-							onClick={deleteCampus} 
+							onClick={()=> onDelete(campus.id)} 
 							textColor={'ghostwhite'}
 							backColor={'firebrick'}
 						/>

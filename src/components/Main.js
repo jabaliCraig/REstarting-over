@@ -72,10 +72,12 @@ const Main = () => {
 
 
 	//delete a campus
-	const deleteCampus =  (EVENT)=> {
-		console.log('A delete EVENT has been requested: ', EVENT.target);
-		//
-		//stuff happens
+	const deleteCampus = async(id)=> {
+		console.log('We shall attempt to delete the campuse whose id is:');
+		console.log(id);
+		await axios.delete(`/api/campuses/${id}`);
+		console.log('A campus has been deleted.');
+		setCampusList(campusList.filter(campus=> campus.id !== id));
 	}
 
 	//delete a student
@@ -102,7 +104,7 @@ const Main = () => {
 						  list={campusList} 
 							addCampus={addCampus} 
 							editCampus={editCampus}
-							deleteCampus={deleteCampus}
+							onDelete={deleteCampus}
 						/>} 
 					/>
 					<Route 

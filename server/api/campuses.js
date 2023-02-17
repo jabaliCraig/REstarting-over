@@ -48,7 +48,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// DELETE /api/students/:id
+// DELETE /api/campuses/:id
 router.delete('/:id', async (req, res, next) => {
 	const { id } = req.params;
 	if(isNaN(Number(id))){
@@ -56,7 +56,7 @@ router.delete('/:id', async (req, res, next) => {
 		return
 	}
 	//Felicia is the student to be deleted.  Bye, Felicia!
-	const Felicia = await Student.findByPk(id);
+	const Felicia = await Campus.findByPk(id);
   try {
     await Felicia.destroy();
     res.sendStatus(204);
