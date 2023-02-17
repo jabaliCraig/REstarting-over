@@ -3,8 +3,19 @@ const router = require('express').Router();
 //import trash from Craig
 const { Campus, Student } = require('../db')
 
-//routes for...
-//get requests needing ALL students (with their campuses)
+//TIME TO CRUD!!!
+//🌟C🌟reate:
+router.post('/', async (req, res, next) => {
+	try {
+		const newStudent = await Student.create(req.body);
+		res.status(201).send(newStudent);
+	} catch (error) {
+		next(error);
+	}
+});
+
+//🌟R🌟ead:
+//(collectively)
 router.get('/', async(req, res, next)=> {
 	try{
 		const studentList = await Student.myFindAll();//`myFindAll` is defined in ../db/index.js
@@ -14,8 +25,7 @@ router.get('/', async(req, res, next)=> {
 		next(e);
 	}
 });
-
-//get requests needing ONE student
+//(individually)
 router.get('/:id', async(req, res, next) => {
   try{
     const thisStudent = await Student.findOne({
@@ -31,16 +41,8 @@ router.get('/:id', async(req, res, next) => {
   }
 });
 
-//
-router.post('/', async (req, res, next) => {
-  try {
-		const newStudent = await Student.create(req.body);
-    res.status(201).send(newStudent);
-  } catch (error) {
-    next(error);
-  }
-});
 
+//🌟U🌟pdate:
 // PUT /api/todos/:id
 router.put('/:id', async (req, res, next) => {
   try {
@@ -50,8 +52,9 @@ router.put('/:id', async (req, res, next) => {
     next(error);
   }
 });
+///////////////////
 
-// DELETE /api/students/:id
+//🌟D🌟emolish:
 router.delete('/:id', async (req, res, next) => {
 	const { id } = req.params;
 	if(isNaN(Number(id))){

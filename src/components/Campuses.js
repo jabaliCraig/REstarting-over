@@ -40,12 +40,11 @@ const Campuses = ({ list, addCampus, editCampus, onDelete }) => {
 							>
 								<h1>{campus.name}</h1>
 						</Link>
-						<Button 
-							text={'Update Campus'}
-							onClick={editCampus} 
-							textColor={'black'}
-							backColor={'silver'}
-						/>
+						{/* <Link 
+						  to={`/campuses/edit/${campus.id}`}
+							>
+								Update Campus
+						</Link> */}
 						<Button 
 							text={'X'}
 							onClick={()=> onDelete(campus.id)} 

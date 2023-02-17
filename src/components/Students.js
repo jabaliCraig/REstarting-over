@@ -37,7 +37,7 @@ const Students = ({ list, onAdd, editStudent, onDelete }) => {
 						</Link>
 						<Button 
 							text={'Update Student'}
-							onClick={editStudent} 
+							onClick={()=> editStudent(student.id)} 
 							textColor={'black'}
 							backColor={'silver'}
 						/>

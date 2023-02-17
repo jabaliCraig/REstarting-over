@@ -1,11 +1,14 @@
+//import magic from The Great Beyond
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+import axios from 'axios';
+//import garbage from Craig
 import Nav from './Nav';
-import Students from './Students';
 import Campuses from './Campuses';
+import Students from './Students';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
-import axios from 'axios';
+import UpdateCampus from './UpdateCampus';
 
 //our main component will...
 const Main = () => {
@@ -55,16 +58,14 @@ const Main = () => {
 	}
 
 	//edit a campus
-	const editCampus = (EVENT)=> {
-		console.log('An edit EVENT has been requested: ', EVENT);
-		//stuff happens
-		console.log('to: ', EVENT)
+	const editCampus = (id)=> {
+		console.log('You would like to edit the event with the id: ', id);
+		console.log('TOO BAD, SUCKA!!!!!')
 	}
 	//edit a student
-	const editStudent = (EVENT)=> {
-		console.log('An edit EVENT has been requested: ', EVENT);
-		//stuff happens
-		console.log('to: ', EVENT)
+	const editStudent = (id)=> {
+		console.log('You would like to edit the event with the id: ', id);
+		console.log('TOO BAD, SUCKA!!!!!')
 	}
 
 
@@ -73,8 +74,6 @@ const Main = () => {
 
 	//delete a campus
 	const deleteCampus = async(id)=> {
-		console.log('We shall attempt to delete the campuse whose id is:');
-		console.log(id);
 		await axios.delete(`/api/campuses/${id}`);
 		console.log('A campus has been deleted.');
 		setCampusList(campusList.filter(campus=> campus.id !== id));
@@ -124,6 +123,19 @@ const Main = () => {
 					/>
 					<Route 
 					  path='/students/:id' 
+						element={<SingleStudent 
+						  list={studentList}
+						/>} 
+					/>
+					<Route 
+					  path='/campuses/edit/:id' 
+						element={<UpdateCampus 
+							list={campusList}
+							onEdit={editCampus} 
+						/>} 
+					/>
+					<Route 
+					  path='/students/edit/:id' 
 						element={<SingleStudent 
 						  list={studentList}
 						/>} 
