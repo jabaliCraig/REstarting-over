@@ -9,6 +9,7 @@ import Students from './Students';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
 import UpdateCampus from './UpdateCampus';
+import UpdateStudent from './UpdateStudent';
 
 //our main component will...
 const Main = () => {
@@ -29,7 +30,7 @@ const Main = () => {
 		fetchStudents();
 	}, [])
 	
-  //functions will be declared here to:
+  //CRUDdy functions will be declared here to:
 	//add a campus
 	const addCampus = async(campus)=> {
 		// console.log('The addStudent function is running, and the student to be added is');
@@ -59,7 +60,7 @@ const Main = () => {
 
 	//edit a campus
 	const editCampus = (id)=> {
-		console.log('You would like to edit the event with the id: ', id);
+		console.log('You would like to edit the event to be: ', id);
 		console.log('TOO BAD, SUCKA!!!!!')
 	}
 	//edit a student
@@ -107,7 +108,6 @@ const Main = () => {
 						element={<Campuses 
 						  list={campusList} 
 							addCampus={addCampus} 
-							editCampus={editCampus}
 							onDelete={deleteCampus}
 						/>} 
 					/>
@@ -116,7 +116,6 @@ const Main = () => {
 						element={<Students 
 						  list={studentList} 
 							onAdd={addStudent} 
-							editStudent={editStudent}
 							onDelete={deleteStudent}
 						/>} 
 					/>
@@ -132,9 +131,10 @@ const Main = () => {
 					  path='/students/:id' 
 						element={<SingleStudent 
 						  list={studentList}
+							onEdit={editStudent}
 						/>} 
 					/>
-					<Route 
+					{/* <Route 
 					  path='/campuses/edit/:id' 
 						element={<UpdateCampus 
 							list={campusList}
@@ -143,10 +143,11 @@ const Main = () => {
 					/>
 					<Route 
 					  path='/students/edit/:id' 
-						element={<SingleStudent 
+						element={<UpdateStudent 
 						  list={studentList}
+							onEdit={editStudent}
 						/>} 
-					/>
+					/> */}
 				</Routes>
 			</div>
 		</Router>

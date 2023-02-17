@@ -6,7 +6,7 @@ import AddStudent from './AddStudent';
 import Button from './Button';
 // const db = require('../../server/db/db');//this line crashes the app
 
-const Students = ({ list, onAdd, editStudent, onDelete }) => {
+const Students = ({ list, onAdd, onDelete }) => {
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
   //JSX should render...
@@ -35,12 +35,6 @@ const Students = ({ list, onAdd, editStudent, onDelete }) => {
 						<Link to={`/students/${student.id}`}>
 							{student.firstName} {student.lastName}
 						</Link>
-						<Button 
-							text={'Update Student'}
-							onClick={()=> editStudent(student.id)} 
-							textColor={'black'}
-							backColor={'silver'}
-						/>
 						<Button 
 							text={'X'}
 							onClick={()=> onDelete(student.id)} 

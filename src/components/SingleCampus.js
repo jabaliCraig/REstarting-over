@@ -8,10 +8,10 @@ import Button from './Button';
 
 //our component will...
 const SingleCampus = ({ list, onEdit, onRemove }) => {
-  //declare THIS campus as THE campus, based on the url
+  //...declare THIS campus as THE campus, based on the url
 	const campus = list.filter(campus => campus.id === Number(useParams().id))[0];
 
-	//...set local state to a Boolean determining whether or not the ADD form appears
+	//...set local state to a Boolean determining whether or not the UPDATE form appears
 	const [showEdit, setShowEdit] = useState(false);
   
 	//...then the JSX should render:

@@ -6,7 +6,7 @@ import AddCampus from './AddCampus';
 import Button from './Button';
 // const db = require('../../server/db/db');//this line crashes the app
 
-const Campuses = ({ list, addCampus, editCampus, onDelete }) => {
+const Campuses = ({ list, onAdd, onDelete }) => {
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
   //JSX should render...
@@ -20,7 +20,7 @@ const Campuses = ({ list, addCampus, editCampus, onDelete }) => {
 				backColor={showAdd ? 'black' : 'silver'}
 			/>
 			{/*...the add menu IF the state is set to true */}
-			{showAdd && <AddCampus onAdd={addCampus}/>}
+			{showAdd && <AddCampus onAdd={onAdd}/>}
 			{/*...some pre-CSS spacing that I'll hopefully remember to take away later */}
 			<div className='pre-CSS-spacer'>
 				<p></p>
@@ -35,16 +35,9 @@ const Campuses = ({ list, addCampus, editCampus, onDelete }) => {
 							alt='A lovely picture of the campus: '
 							style={{maxHeight: 99}}
 						></img>
-						<Link 
-						  to={`/campuses/${campus.id}`}
-							>
+						<Link to={`/campuses/${campus.id}`} >
 								<h1>{campus.name}</h1>
 						</Link>
-						{/* <Link 
-						  to={`/campuses/edit/${campus.id}`}
-							>
-								Update Campus
-						</Link> */}
 						<Button 
 							text={'X'}
 							onClick={()=> onDelete(campus.id)} 
