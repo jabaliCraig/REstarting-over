@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddStudent = ({ onAdd }) => {
+const UpdateStudent = 3/*({ onAdd }) => {
 	//set local state variables for each part of the form
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -18,7 +18,6 @@ const AddStudent = ({ onAdd }) => {
 		}
 		//...create a new object from input fields (stored from the form as state variables)
 		const newStudent = { firstName, lastName, email, gpa, imageUrl }
-		console.log(newStudent)
 		//...run the onAdd function with the new student object passed in
 		onAdd(newStudent);
 		//...and reset the form
@@ -62,3 +61,4 @@ const AddStudent = ({ onAdd }) => {
 }
 
 export default AddStudent
+*/

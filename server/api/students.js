@@ -1,29 +1,36 @@
+//import magic from Magic Land
 const router = require('express').Router();
+//import trash from Craig
+const { Campus, Student } = require('../db')
 
-const db = require('../db/db');
-const Student = require('../db/models/Student');
 //routes for...
-//get requests needing ALL students
+//get requests needing ALL students (with their campuses)
 router.get('/', async(req, res, next)=> {
 	try{
-		const studentList = await Student.myFindAll();
+		const studentList = await Student.myFindAll();//`myFindAll` is defined in ../db/index.js
 		res.send(studentList);
 	}
 	catch(err){
 		next(e);
 	}
 });
+
 //get requests needing ONE student
 router.get('/:id', async(req, res, next) => {
   try{
-    const thisStudent = await Student.findByPk(req.params.id);
-		console.log(thisStudent);
+    const thisStudent = await Student.findOne({
+			where: {
+				id: req.params.id,
+			},
+			include: Campus
+		});
 		res.send(thisStudent);
   }
   catch(e){
     next(e);
   }
 });
+
 //
 router.post('/', async (req, res, next) => {
   try {

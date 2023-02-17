@@ -28,12 +28,30 @@ const Main = () => {
 	
   //functions will be declared here to:
 	//add a campus
-	const addCampus = (campus)=> {
-		console.log('A campus has been added: ', campus)
+	const addCampus = async(campus)=> {
+		// console.log('The addStudent function is running, and the student to be added is');
+		console.log(campus);
+		try{
+			const newStudent = await axios.post('/campuses', campus);//...or something
+			setCampusList([...campusList, campus]);
+			// console.log('A student has been added: ', newStudent.config.data);
+		}
+		catch(err){
+			console.log(err);
+		}
 	}
 	//add a student
-	const addStudent = (student)=> {
-		console.log('A student has been added: ', student)
+	const addStudent = async(student)=> {
+		console.log('The addStudent function is running, and the student to be added is');
+		console.log(student);
+		try{
+			await axios.post('/api/students', student);//...or something
+			setStudentList([...studentList, student]);
+			// console.log('A student has been added: ', newStudent.config.data);
+		}
+		catch(err){
+			console.log(err);
+		}
 	}
 
 	//edit a campus
@@ -49,18 +67,27 @@ const Main = () => {
 		console.log('to: ', EVENT)
 	}
 
+
+
+
+
 	//delete a campus
 	const deleteCampus =  (EVENT)=> {
-		console.log('A delete EVENT has been requested: ', EVENT);
+		console.log('A delete EVENT has been requested: ', EVENT.target);
 		//
 		//stuff happens
 	}
+
 	//delete a student
-	const deleteStudent =  (EVENT)=> {
-		console.log('A delete EVENT has been requested: ', EVENT);
-		//
-		//stuff happens
+	const deleteStudent = async(id)=> {
+		await axios.delete(`/api/students/${id}`)
+		console.log('A student has been deleted.');
+		setStudentList(studentList.filter(student=> student.id !== id));
 	}
+
+
+
+
 
   //JSX should return the whole app with routes and links and everything! ...🤞🏻
 	return (
@@ -82,9 +109,9 @@ const Main = () => {
 					  path='/students' 
 						element={<Students 
 						  list={studentList} 
-							addStudent={addStudent} 
+							onAdd={addStudent} 
 							editStudent={editStudent}
-							deleteStudent={deleteStudent}
+							onDelete={deleteStudent}
 						/>} 
 					/>
 					<Route 
