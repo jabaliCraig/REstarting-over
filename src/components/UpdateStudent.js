@@ -13,15 +13,7 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 	const [email, setEmail] = useState('');
 	const [gpa, setGPA] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
-
-
-	
-					{/*#LIFEGOALS: also add a delete button here so that someone can delete a student while looking at THAT student instead of having to go back through the whole list of ALL students */}
-
-
-
-
-  //define a function for submitting that takes in the event object as a parameter; this function will...
+	//define a function for submitting that takes in the event object as a parameter; this function will...
 	const onSubmit = (e)=> {
 		//...prevent the submit from loading a new page
 		e.preventDefault();
@@ -35,8 +27,8 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 
 		/////////////////////////////////////////////THIS////////////////
 		const newStudent = { firstName, lastName, email, gpa, imageUrl }
-////////needs to check each field to see if the new one is a blank string
-//////////and if it IS, use the old value, not the black string...
+		////////needs to check each field to see if the new one is a blank string
+		//////////and if it IS, use the old value, not the black string...
 
 
 

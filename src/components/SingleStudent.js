@@ -4,14 +4,16 @@ import { useParams, Link } from "react-router-dom";
 //import garbage from Craig
 import UpdateStudent from './UpdateStudent';
 import Button from './Button';
+import EnrollmentForm from './EnrollmentForm';
 
 //our component will...
 const SingleStudent = ({ list, onDelete, onEdit }) => {
   //...declare THIS student as THE student, based on the url
 	const student = list.filter(student => student.id === Number(useParams().id))[0];
 
-	//...set local state to a Boolean determinging whether or not the UPDATE form appears
+	//...set local state to a Boolean determinging whether or not the UPDATE and ENROLL forms appear
 	const [showEdit, setShowEdit] = useState(false);
+	const [showEnroll, setShowEnroll] = useState(false);
 
 	//...then the JSX should render:
 	return (
@@ -48,16 +50,23 @@ const SingleStudent = ({ list, onDelete, onEdit }) => {
 					<p></p>
 				</div>	
 				<div className='card-banner'>
-					<span>Campus: {student.campusId===null ? 
-						'Please enroll this student at a campus to see their campus information.' :
-						<Link to={`/campuses/${student.campusId}`}>
+					<span>Campus: {student.campusId ? 
+					  <Link to={`/campuses/${student.campusId}`}>
 							{student.campus.name}
-						</Link>
+						</Link> :
+						<div>
+							<Button 
+								text={showEnroll ? 'sucka!' : "Enroll student now?"}
+								onClick={()=> setShowEnroll(!showEnroll)} 
+								textColor={showEnroll ? 'silver' : 'black'}
+								backColor={showEnroll ? 'black' : 'silver'}
+							/>
+						  {showEnroll && <EnrollmentForm student={student} />}
+						</div>
 						}				
 					</span>
 					<span> </span>GPA: {student.gpa}
 				</div>
-				{/*#LIFEGOALS: also add a delete button here so that someone can delete a student while looking at THAT student instead of having to go back through the whole list of ALL students */}
 			</div>
 		</div>
 	)

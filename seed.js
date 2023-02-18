@@ -345,7 +345,7 @@ const students = [
 		campusId: 1,
 	}, 
 	{
-		firstName: 'Peter',
+		firstName: 'TK-615',
 		lastName: '...or is he?',
 		email: 'maybe_Han@rescue.org',
 		imageUrl: 'https://img.brickowl.com/files/image_cache/medium/lego-han-solo-with-stormtrooper-outfit-minifigure-527757-25.jpg',

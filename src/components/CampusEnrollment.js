@@ -4,18 +4,14 @@ import { Link } from 'react-router-dom';
 import Students from './Students';
 import Button from './Button';
 
-const CampusEnrollment = ({ campus, students, onRemove }) => {
-	// console.log('This campus is');
-	// console.log(campus);
-	// console.log('The students are');
-	// console.log(students);
+const CampusEnrollment = ({ campus, onRemove }) => {
 	return (
 		<div>
-			{students.length===0 ?
-			  `Please enroll students at ${campus.name} to see their information here.` :
+			{campus.students.length===0 ?
+			  <span style={{fontWeight: 'bold'}}>Please enroll students at ${campus.name} to see their information here.</span> :
 				<div className='students-list' >	
 						<ul>
-					{students.map((student)=> {
+					{campus.students.map((student)=> {
 						return(
 								<li key={student.id}>
 									<Link to={`/students/${student.id}`}>

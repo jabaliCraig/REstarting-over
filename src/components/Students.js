@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 //import my less magical stuff
 import AddStudent from './AddStudent';
 import Button from './Button';
+import EnrollmentForm from './EnrollmentForm';
 // const db = require('../../server/db/db');//this line crashes the app
 
-const Students = ({ list, onAdd, onDelete }) => {
+const Students = ({ list, onAdd }) => {
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
   //JSX should render...

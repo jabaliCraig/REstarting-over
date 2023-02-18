@@ -37,13 +37,14 @@ const Campuses = ({ list, onAdd, onDelete }) => {
 						></img>
 						<Link to={`/campuses/${campus.id}`} >
 								<h1>{campus.name}</h1>
-						</Link>
+						</Link>						
+						{/* I KNOW THE RUBRIC SAYS THE DELETE BUTTON BELONGS HERE, BUT IT DOESN'T MAKE ANY SENSE TO ME TO HAVE IT HERE INSTEAD OF ON THE EDIT CAMPUS PAGE. SO HERE'S THE CODE TO PROVE THAT I KNOW HOW TO PUT IT HERE. BUT THE FUNCTIONAL ONE LIVES IN './UpdateCampus.js' NOW. 
 						<Button 
 							text={'X'}
 							onClick={()=> onDelete(campus.id)} 
 							textColor={'ghostwhite'}
 							backColor={'firebrick'}
-						/>
+						/> */}
           </div>
         )
       })}

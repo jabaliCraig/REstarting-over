@@ -41,20 +41,18 @@ const SingleCampus = ({ list, onDelete, onEdit, onRemove }) => {
 					<img src={campus.imageUrl} />
 					<h1>{campus.name}</h1>
 				</div>
-				<div className='campus-banner'>
-					<span>{campus.address}</span><span>Enrollment: {campus.students.length}</span>
+				<p>Address: <span style={{fontWeight: 'bold'}}>{campus.address}</span></p>
+				<p>Enrollment: <span style={{fontWeight: 'bold'}}>{campus.students.length}</span></p>
 				</div>
 				<div className='info'>
 					{campus.description}
 				</div>
 				{/* AND all the students enrolled in this campus!*/}
 				<CampusEnrollment 
-				  campus={campus} 
-					students={campus.students/*SURELY THIS CAN'T BE NECESSARY.......... */}
+				  campus={campus}
 					onRemove={onRemove}
 					/>
 			</div>
-		</div>
 	)
 }
 

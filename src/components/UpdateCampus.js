@@ -1,20 +1,17 @@
 //import magic from outta space
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from './Button';
 
 //our component will...
 const UpdateCampus = ({ campus, onEdit, onDelete }) => {
-	//set local state variables for each part of the form
+	//...make this for later:
+	const navigate = useNavigate();
+	//...set local state variables for each part of the form
 	const [name, setName] = useState('');
 	const [address, setAddress] = useState('');
 	const [description, setDescription] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
-
-
-
-					{/*#LIFEGOALS: also add a delete button here so that someone can delete a campus while looking at THAT campus instead of having to go back through the whole list of ALL campuses */}
-
-
-
   //define a function for submitting that takes in the event object as a parameter; this function will...
 	const onSubmit = (e)=> {
 		//...prevent the submit from loading a new page
@@ -52,54 +49,65 @@ const UpdateCampus = ({ campus, onEdit, onDelete }) => {
 
 	//...then JSX should return the form with a 'form-control' section for each input field and a submit button
 	return (
-		<form className='add-form' onSubmit={onSubmit}>
-			<div className='form-control'>
-				<p><label><span style={{fontWeight: 'bold'}}>Current Campus Name:</span> <small>{campus.name}</small></label></p>
-				<input 
-					type='text' 
-					placeholder='update name to?' 
-					value={name} 
-					onChange={(e)=> setName(e.target.value)} 
-				/>
-			</div>
-
-			<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Campus Address: </span><small>{campus.address}</small></label></p>
+		<div className='menu' >
+			<Button 
+				text='Delete this campus from ACME'
+				textColor='ghostwhite'
+				backColor='firebrick'
+				onClick={(e)=> {
+					onDelete(campus.id);
+					navigate('/campuses')
+				}}
+			/>
+			<form className='add-form' onSubmit={onSubmit}>
+				<div className='form-control'>
+					<p><label><span style={{fontWeight: 'bold'}}>Current Campus Name:</span> <small>{campus.name}</small></label></p>
 					<input 
 						type='text' 
-						placeholder='update address to?' 
-						value={address} 
-						onChange={(e)=> setAddress(e.target.value)} 
+						placeholder='update name to?' 
+						value={name} 
+						onChange={(e)=> setName(e.target.value)} 
 					/>
+				</div>
 
-			</div>
+				<div className='form-control'>
+						<p><label><span style={{fontWeight: 'bold'}}>Current Campus Address: </span><small>{campus.address}</small></label></p>
+						<input 
+							type='text' 
+							placeholder='update address to?' 
+							value={address} 
+							onChange={(e)=> setAddress(e.target.value)} 
+						/>
 
-			<div className='form-control'>
-				<p><label><span style={{fontWeight: 'bold'}}>Current Campus Description: </span><small>{campus.description}</small></label></p>
-				<input 
-					type='text' 
-					placeholder='update description to?' 
-					value={description} 
-					onChange={(e)=> setDescription(e.target.value)} 
-				/>
-			</div>
-				
-			<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Campus Image URL: </span><small>{campus.imageUrl}</small></label></p>
+				</div>
+
+				<div className='form-control'>
+					<p><label><span style={{fontWeight: 'bold'}}>Current Campus Description: </span><small>{campus.description}</small></label></p>
 					<input 
 						type='text' 
-						placeholder='update image URL to?' 
-						value={imageUrl} 
-						onChange={(e)=> setImageUrl(e.target.value)} 
+						placeholder='update description to?' 
+						value={description} 
+						onChange={(e)=> setDescription(e.target.value)} 
 					/>
-			</div>
+				</div>
+					
+				<div className='form-control'>
+						<p><label><span style={{fontWeight: 'bold'}}>Current Campus Image URL: </span><small>{campus.imageUrl}</small></label></p>
+						<input 
+							type='text' 
+							placeholder='update image URL to?' 
+							value={imageUrl} 
+							onChange={(e)=> setImageUrl(e.target.value)} 
+						/>
+				</div>
 
-			<div className='pre-CSS-spacer'>
-						<p></p>
-			</div>	
+				<div className='pre-CSS-spacer'>
+							<p></p>
+				</div>	
 
-			<input type='submit' value='Save' />
-		</form>
+				<input type='submit' value='Save' />
+			</form>
+		</div>
 	)
 }
 

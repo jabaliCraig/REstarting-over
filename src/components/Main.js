@@ -72,12 +72,12 @@ const Main = () => {
 	const deleteCampus = async(id)=> {
 		await axios.delete(`/api/campuses/${id}`);
 		console.log('A campus has been deleted.');
-		setCampusList(campusList.filter(campus=> campus.id !== id));
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
 	}
 	const deleteStudent = async(id)=> {
 		await axios.delete(`/api/students/${id}`)
 		console.log('A student has been deleted.');
-		// setStudentList(studentList.filter(student=> student.id !== id));
 		fetchAndSetCampuses();
 		fetchAndSetStudents();
 	}
