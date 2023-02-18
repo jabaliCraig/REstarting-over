@@ -25,7 +25,7 @@ const AddCampus = ({ onAdd }) => {
 	}
 	//JSX should return the form with a 'form-control' section for each input field and a submit button
 	return (
-		<form className='add-form' onSubmit={onSubmit}>
+		<form className='add-form' action='/campuses/add' method='POST' onSubmit={onSubmit}>
 			<div className='form-control'>
 				<label>Campus Name</label>
 				<input type='text' placeholder='**REQUIRED**' value={name} onChange={(e)=> setName(e.target.value)} />

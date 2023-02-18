@@ -5,20 +5,18 @@ const { Campus, Student } = require('../db')
 
 //TIME TO CRUD!!!
 //🌟C🌟reate:
-router.post('/', async (req, res, next) => {
-	try {
-		const newCampus = await Campus.create({
-			where: {
-				name: req.body.name,
-				address: req.body.address,
-				description: req.body.description,
-				imageUrl: req.body.imageUrl
-			}
-		});
-		res.status(201).send(newCampus);
-	} catch (error) {
-		next(error);
-	}
+router.post('/', async (req, res) => {
+	console.log(req.body)
+	// let { name, address, description, imageUrl } = req.body;
+	
+  Campus.create({
+        name,
+        address,
+				description,
+				imageUrl
+    })
+		  .then(campus => res.redirect('/campuses'))
+			.catch(err => res.render('error', {error:err.message}))
 });
 
 //🌟R🌟ead:

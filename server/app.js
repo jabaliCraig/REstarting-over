@@ -7,6 +7,10 @@ const app = express();
 app.use('/api/campuses', require('./api/campuses'));
 app.use('/api/students', require('./api/students'));//This line of code crashes the app... so🤔...how do we be SNEAKY????
 
+// body parsing middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 // static middleware
 app.use(express.static(path.join(__dirname, '..','public')))
 
@@ -17,18 +21,11 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-// async(req, res, next)=> {
-// 	try{
-// 		const campusList = await Campus.findAll();
-// 		console.log(campusList);
-// 	}
-// 	catch(err){
-// 		next(err);
-// 	}
-// 	finally{
-// 		console.log("We've finallied.")
-// 	}
-// }
+// error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(err.status || 500).send(err.message || 'Internal server error')
+})
 
 module.exports = app;
 

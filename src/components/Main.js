@@ -20,24 +20,30 @@ const Main = () => {
 		fetchAndSetCampuses();
 		fetchAndSetStudents();
 	}, [])
+  //...declare a bunch of CRUD!
 	
-  //Time for a bunch of CRUD!
   //🌟C🌟reate:
 	const addCampus = async(campus)=> {
 		try{
 			//Here's the BRAIN-BUSTER:
-			const newCampus = await axios.post('/campuses', campus);//...or something... The problem is that if I console log newCampus, it's just a bunch of mush. I can see the data when I console log `newCampus.config.data`, but it's in a form I don't know how do get to. And it definitely doesn't update the database.🧠💥💨
-			setCampusList([...campusList, campus]);
+			let newCampus = await axios.post('/campuses', campus)/*...or something like that. The problem is that if I console log newCampus, it's just a bunch of mush. I can see the data when I console log `newCampus.config.data`, but it's in a form I don't know how do get to. And it definitely doesn't update the database.🧠💥💨
+			BUT if it had updated the database, then obviously, I would run these next:		
+			fetchAndSetCampuses();
+			fetchAndSetStudents();
+			Since it doesn't, I'll just use wizard magic to make it look like the object was added. That way, when you click on it, the entire app will crash.👍🏻*/
+			setCampusList([...campusList, JSON.parse(newCampus.config.data)]);
 		}
 		catch(err){
 			console.log(err);
 		}
 	}
 	const addStudent = async(student)=> {
-		// SEE NOTES ON `addCampus` ABOVE
+		// ⬆️SEE NOTES ON `addCampus` ABOVE⬆️
 		try{
 			const newStudent = await axios.post('/students', student);
-			setStudentList([...studentList, student]);
+			// fetchAndSetCampuses();
+			// fetchAndSetStudents();
+			setStudentList([...studentList, JSON.parse(newStudent.config.data)])
 		}
 		catch(err){
 			console.log(err);
@@ -58,14 +64,20 @@ const Main = () => {
 	const editCampus = (id)=> {
 		console.log('You would like to edit the event to be: ', id);
 		console.log('TOO BAD, SUCKA!!!!!')
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
 	}
 	const editStudent = (input)=> {
 		console.log('You would like to edit the event to be ', input);
 		console.log('TOO BAD, SUCKA!!!!!')
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
 	}
 	//disenroll student from campus
 	const disenroll = (id)=> {
 		console.log('Pretend we did something so that the student with this id is no longer at this campus:', id)
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
 	}
 
 	//🌟D🌟emolerize!:

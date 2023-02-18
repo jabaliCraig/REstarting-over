@@ -5,21 +5,18 @@ const { Campus, Student } = require('../db')
 
 //TIME TO CRUD!!!
 //🌟C🌟reate:
-router.post('/', async (req, res, next) => {
-	try {
-		const [student, wasCreated] = await Student.findOrCreate({
-      where: {
-        firstName: req.body.firstName,
-				lastName: req.body.lastName,
-        email: req.body.email,
-				gpa: req.body.gpa,
-				imageUrl: req.body.imageUrl
-      }
-    });
-    //res.redirect("/");//ALTHOUGH... the rubric says to update the view instead of return to the students page... as if I know how to do either >(
-		} catch (error) {
-		next(error);
-	}
+router.post('/', async (req, res) => {
+	let { firstName, lastName, email, gpa, imageUrl } = req.body;
+	
+  Student.create({
+        firstName,
+				lastName,
+        email,
+				gpa,
+				imageUrl
+    })
+		  .then(student => res.redirect('/students'))
+			.catch(err => res.render('error', {error:err.message}))
 });
 
 //🌟R🌟ead:
