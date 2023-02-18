@@ -8,6 +8,7 @@ import Campuses from './Campuses';
 import Students from './Students';
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
+import Landing from './Landing';
 
 //our main component will...
 const Main = () => {
@@ -16,19 +17,11 @@ const Main = () => {
 	const [studentList, setStudentList] = useState([]);
 	//...set the state to the database data upon first loading page
 	useEffect(()=> {
-		const fetchCampuses = async()=> {
-			const campusAxiosRes = await axios.get('/api/campuses');
-			setCampusList(campusAxiosRes.data);
-		}
-		const fetchStudents = async()=> {
-			const studentAxiosRes = await axios.get('/api/students');
-			setStudentList(studentAxiosRes.data);
-		}
-		fetchCampuses();
-		fetchStudents();
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
 	}, [])
 	
-  //N🚫 reading here! These functions are just CUD
+  //Time for a bunch of CRUD!
   //🌟C🌟reate:
 	const addCampus = async(campus)=> {
 		try{
@@ -51,6 +44,16 @@ const Main = () => {
 		}
 	}
 
+	//🌟R🌟ead:
+	const fetchAndSetCampuses = async()=> {
+		const campusAxiosRes = await axios.get('/api/campuses');
+		setCampusList(campusAxiosRes.data);
+	}
+	const fetchAndSetStudents = async()=> {
+		const studentAxiosRes = await axios.get('/api/students');
+		setStudentList(studentAxiosRes.data);
+	}
+	
   //🌟U🌟pdate:
 	const editCampus = (id)=> {
 		console.log('You would like to edit the event to be: ', id);
@@ -74,7 +77,9 @@ const Main = () => {
 	const deleteStudent = async(id)=> {
 		await axios.delete(`/api/students/${id}`)
 		console.log('A student has been deleted.');
-		setStudentList(studentList.filter(student=> student.id !== id));
+		// setStudentList(studentList.filter(student=> student.id !== id));
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
 	}
 
   //JSX should return the whole app with routes and links and everything! ...🤞🏻
@@ -84,6 +89,10 @@ const Main = () => {
 				<Nav />
 				{/*The navbar comes above the routes because it should be on top of the page, no matter which page is showing*/}
 				<Routes>
+					<Route 
+					  path='/' 
+						element={<Landing />} 
+					/>
 					<Route 
 					  path='/campuses' 
 						element={<Campuses 

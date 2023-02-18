@@ -35,11 +35,15 @@ const Students = ({ list, onAdd, onDelete }) => {
 						<Link to={`/students/${student.id}`}>
 							{student.firstName} {student.lastName}
 						</Link>
-						<span> </span>- Enrolled at<span> </span>
-						<Link to={`/campuses/${student.campus.id}`}>
-						  {student.campus.name}
-						</Link> 
-						<span> </span>Campus
+						{student?.campus?.id ?
+							<span> 
+								Enrolled at
+								<span> </span>
+							  <Link to={`/campuses/${student.campus.id}`}>
+								  {student.campus.name}
+							  </Link> 
+								Campus
+							</span> : <span></span>}
 						{/* I KNOW THE RUBRIC SAYS THE DELETE BUTTON BELONGS HERE, BUT IT DOESN'T MAKE ANY SENSE TO ME TO HAVE IT HERE INSTEAD OF ON THE EDIT STUDENT PAGE. SO HERE'S THE CODE TO PROVE THAT I KNOW HOW TO PUT IT HERE. BUT THE FUNCTIONAL ONE LIVES IN './UpdateStudent.js' NOW. 
 						<Button 
 							text={'X'}
