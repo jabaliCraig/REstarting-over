@@ -17,32 +17,18 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 	const onSubmit = (e)=> {
 		//...prevent the submit from loading a new page
 		e.preventDefault();
-		//...create a new object from input fields (stored from the form as state variables)
-
-
-
-
-
-
-
-		/////////////////////////////////////////////THIS////////////////
-		const newStudent = { firstName, lastName, email, gpa, imageUrl }
-		////////needs to check each field to see if the new one is a blank string
-		//////////and if it IS, use the old value, not the black string...
-
-
-
-
-
-
-
+		//...check each field to see if it has been updated and, if not, use the old value
+		if ( !firstName || firstName === '') setFirstName(student.firstName);
+		if ( !lastName || lastName === '') setLastName(student.lastName);
+		if ( !email || email === '') setEmail(student.email);
+		if ( !gpa || gpa === '') setGPA(student.firstName);
+		if ( !imageUrl || imageUrl === '') setImageUrl(student.firstName);
+		//...create a new object including the updates stored in state
+		const upStudent = { firstName, lastName, email, gpa, imageUrl }
+						console.log('before running onEdit(), the upStudent object is:');
+						console.log(upStudent)
 		//...run the onAdd function with the new student object passed in
-		onEdit(newStudent);
-
-		////IDEALLY///////
-		//this should just send them back to the studentS page #lifeGoals
-		//////////////////////////////////////////////////////
-
+		onEdit(upStudent);
 		//...and reset the form
 		setFirstName('');
 		setLastName('');
