@@ -1,7 +1,7 @@
 //import magic from Magic Land
 const router = require('express').Router();
 //import trash from Craig
-const { Campus, Student } = require('../db')
+const Campus = require('../db/models/Campus')
 
 //TIME TO CRUD!!!
 //🌟C🌟reate:

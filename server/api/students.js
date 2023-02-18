@@ -51,8 +51,8 @@ router.get('/:id', async(req, res, next) => {
 // PUT /api/todos/:id
 router.put('/:id', async (req, res, next) => {
   try {
-    const todo = await Todo.findByPk(req.params.id);
-    res.send(await todo.update(req.body));
+    const upStudent = await Student.findByPk(req.params.id);
+    res.send(await upStudent.update(req.body));
   } catch (error) {
     next(error);
   }

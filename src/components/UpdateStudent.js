@@ -7,22 +7,16 @@ import Button from './Button';
 const UpdateStudent = ({ student, onEdit, onDelete }) => {
 	//...make this for later:
 	const navigate = useNavigate();
-	//...set local state variables for each part of the form
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [email, setEmail] = useState('');
-	const [gpa, setGPA] = useState('');
-	const [imageUrl, setImageUrl] = useState('');
+	//...set local state variables for each part of the form to match the student's pre-edit info
+	const [firstName, setFirstName] = useState(student.firstName);
+	const [lastName, setLastName] = useState(student.lastName);
+	const [email, setEmail] = useState(student.email);
+	const [gpa, setGPA] = useState(student.gpa);
+	const [imageUrl, setImageUrl] = useState(student.imageUrl);
 	//define a function for submitting that takes in the event object as a parameter; this function will...
 	const onSubmit = (e)=> {
 		//...prevent the submit from loading a new page
 		e.preventDefault();
-		//...check each field to see if it has been updated and, if not, use the old value
-		if ( !firstName || firstName === '') setFirstName(student.firstName);
-		if ( !lastName || lastName === '') setLastName(student.lastName);
-		if ( !email || email === '') setEmail(student.email);
-		if ( !gpa || gpa === '') setGPA(student.firstName);
-		if ( !imageUrl || imageUrl === '') setImageUrl(student.firstName);
 		//...create a new object including the updates stored in state
 		const upStudent = { firstName, lastName, email, gpa, imageUrl }
 						console.log('before running onEdit(), the upStudent object is:');
@@ -30,11 +24,11 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 		//...run the onAdd function with the new student object passed in
 		onEdit(upStudent);
 		//...and reset the form
-		setFirstName('');
-		setLastName('');
-		setEmail('');
-		setGPA('');
-		setImageUrl('');
+		setFirstName(student.firstName);
+		setLastName(student.lastName);
+		setEmail(student.email);
+		setGPA(student.gpa);
+		setImageUrl(student.imageUrl);
 	}
 
 	//...then JSX should return the form with a 'form-control' section for each input field and a submit button
