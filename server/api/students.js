@@ -9,11 +9,11 @@ router.post('/', async (req, res) => {
 	let { firstName, lastName, email, gpa, imageUrl } = req.body;
 	
   Student.create({
-        firstName,
-				lastName,
-        email,
-				gpa,
-				imageUrl
+		email,
+    firstName,
+		gpa,
+		imageUrl,
+		lastName,
     })
 		  .then(student => res.redirect('/students'))
 			.catch(err => res.render('error', {error:err.message}))

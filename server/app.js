@@ -21,6 +21,10 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
+app.post("/", (req, res) => {
+  res.json({ message: "Welcome to bezkoder application." });
+});
+
 // error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack)
