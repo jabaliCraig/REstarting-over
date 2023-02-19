@@ -1,14 +1,12 @@
 //import magic from Magic Land
 const router = require('express').Router();
 //import trash from Craig
-const Campus = require('../db/models/Campus')
+const { Campus, Student } = require('../db');
 
 //TIME TO CRUD!!!
 //🌟C🌟reate:
 router.post('/', async (req, res) => {
-	console.log(req.body)
-	// let { name, address, description, imageUrl } = req.body;
-	
+	let { name, address, description, imageUrl } = req.body;
   Campus.create({
         name,
         address,

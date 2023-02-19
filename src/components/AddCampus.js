@@ -23,30 +23,60 @@ const AddCampus = ({ onAdd }) => {
 		setDescription('');
 		setImageUrl('');
 	}
-	//JSX should return the form with a 'form-control' section for each input field and a submit button
-	return (
-		<form className='add-form' action='/campuses/add' method='POST' onSubmit={onSubmit}>
+
+//JSX should return the form with a 'form-control' section for... 	
+return (
+		<form 
+		  className='add-form' 
+			action='/campuses/add' 
+			method='POST' 
+			onSubmit={onSubmit}
+		>
+			{/*...name */}
 			<div className='form-control'>
 				<label>Campus Name</label>
-				<input type='text' placeholder='**REQUIRED**' value={name} onChange={(e)=> setName(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='**REQUIRED**' 
+					value={name} 
+					onChange={(e)=> setName(e.target.value)} 
+				/>
 			</div>
-
+			{/*...address */}
 			<div className='form-control'>
 				<label>Campus Address</label>
-				<input type='text' placeholder='**REQUIRED**' value={address} onChange={(e)=> setAddress(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='**REQUIRED**' 
+					value={address} 
+					onChange={(e)=> setAddress(e.target.value)} 
+				/>
 			</div>
-
+			{/*...description */}
 			<div className='form-control'>
 				<label>Campus Description</label>
-				<input type='text' placeholder='(optional)' value={description} onChange={(e)=> setDescription(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='(optional)' 
+					value={description} 
+					onChange={(e)=> setDescription(e.target.value)} 
+				/>
 			</div>
-
+			{/*...image URL */}
 			<div className='form-control'>
 				<label>Campus Image URL</label>
-				<input type='text' placeholder='(optional)' value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='(optional)' 
+					value={imageUrl} 
+					onChange={(e)=> setImageUrl(e.target.value)} 
+				/>
 			</div>
-
-			<input type='submit' value='Save' />
+			{/*...and a submit button down at the very bottom🔘 */}
+			<input 
+			  type='submit' 
+				value='Save' 
+			/>
 		</form>
 	)
 }

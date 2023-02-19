@@ -1,11 +1,12 @@
 //import magic from outta space
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+//import other stuff
 import Button from './Button';
 
 //our component will...
 const UpdateStudent = ({ student, onEdit, onDelete }) => {
-	//...make this for later:
+	//...make this for later
 	const navigate = useNavigate();
 	//...set local state variables for each part of the form to match the student's pre-edit info
 	const [firstName, setFirstName] = useState(student.firstName);
@@ -19,8 +20,6 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 		e.preventDefault();
 		//...create a new object including the updates stored in state
 		const upStudent = { firstName, lastName, email, gpa, imageUrl }
-						console.log('before running onEdit(), the upStudent object is:');
-						console.log(upStudent)
 		//...run the onAdd function with the new student object passed in
 		onEdit(upStudent);
 		//...and reset the form
@@ -45,7 +44,12 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 			/>
 			<form className='add-form' onSubmit={onSubmit}>
 				<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Student First Name:</span> <small>{student.firstName}</small></label></p>
+					<p>
+						<label>
+							<span style={{fontWeight: 'bold'}}>Current Student First Name:</span> 
+							<small>{student.firstName}</small>
+						</label>
+					</p>
 					<input 
 						type='text' 
 						placeholder='update first name to?' 
@@ -53,9 +57,13 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 						onChange={(e)=> setFirstName(e.target.value)} 
 					/>
 				</div>
-
 				<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Student Last Name:</span> <small>{student.lastName}</small></label></p>
+					<p>
+						<label>
+							<span style={{fontWeight: 'bold'}}>Current Student Last Name:</span> 
+							<small>{student.lastName}</small>
+						</label>
+					</p>
 					<input 
 						type='text' 
 						placeholder='update last name to?' 
@@ -63,20 +71,27 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 						onChange={(e)=> setLastName(e.target.value)} 
 					/>
 				</div>
-
 				<div className='form-control'>
-						<p><label><span style={{fontWeight: 'bold'}}>Current Student Email Address: </span><small>{student.email}</small></label></p>
+						<p>
+							<label>
+								<span style={{fontWeight: 'bold'}}>Current Student Email Address: </span>
+								<small>{student.email}</small>
+							</label>
+						</p>
 						<input 
 							type='text' 
 							placeholder='update email address to?' 
 							value={email} 
 							onChange={(e)=> setEmail(e.target.value)} 
 						/>
-
 				</div>
-
 				<div className='form-control'>
-					<p><label><span style={{fontWeight: 'bold'}}>Current Student GPA: </span><small>{student.gpa}</small></label></p>
+					<p>
+						<label>
+							<span style={{fontWeight: 'bold'}}>Current Student GPA: </span>
+							<small>{student.gpa}</small>
+						</label>
+					</p>
 					<input 
 						type='text' 
 						placeholder='update GPA to?' 
@@ -84,9 +99,13 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 						onChange={(e)=> setGPA(e.target.value)} 
 					/>
 				</div>
-					
 				<div className='form-control'>
-						<p><label><span style={{fontWeight: 'bold'}}>Current Student Image URL: </span><small>{student.imageUrl}</small></label></p>
+						<p>
+							<label>
+								<span style={{fontWeight: 'bold'}}>Current Student Image URL: </span>
+								<small>{student.imageUrl}</small>
+							</label>
+						</p>
 						<input 
 							type='text' 
 							placeholder='update image URL to?' 
@@ -94,11 +113,9 @@ const UpdateStudent = ({ student, onEdit, onDelete }) => {
 							onChange={(e)=> setImageUrl(e.target.value)} 
 						/>
 				</div>
-
 				<div className='pre-CSS-spacer'>
-							<p></p>
-				</div>	
-
+					<p></p>
+				</div>
 				<input type='submit' value='Save' />
 			</form>
 		</div>

@@ -4,13 +4,53 @@ import { Link } from 'react-router-dom';
 //import my less magical stuff
 import AddStudent from './AddStudent';
 import Button from './Button';
-import EnrollmentForm from './EnrollmentForm';
-// const db = require('../../server/db/db');//this line crashes the app
 
-const Students = ({ list, onAdd }) => {
+const Students = ({ list, onAdd, sortFName, sortLName, sortByCampus, sortGPA }) => {
   //set local state to a Boolean determining whether or not the ADD form appears
 	const [showAdd, setShowAdd] = useState(false);
-  //JSX should render...
+	//set local states to Booleans showing whether the list has already been sorted by different fields
+	const [sortedFirst, setSortedFirst] = useState(false);
+	const [sortedLast, setSortedLast] = useState(false);
+	const [sortedCampus, setSortedCampus] = useState(false);
+	const [sortedGPA, setSortedGPA] = useState(false);
+	//declare onClick functions that will change the state Boolean (for display purposes) and call the sort function
+	const onFNameSort = ()=> {
+		//adjust all states accordingly
+		setSortedFirst(true);
+		setSortedLast(false);
+		setSortedCampus(false);
+		setSortedGPA(false);
+    //call sort function passed down through props
+		sortFName();
+	}
+	const onLNameSort = ()=> {
+		//adjust all states accordingly
+		setSortedFirst(false);
+		setSortedLast(true);
+		setSortedCampus(false);
+		setSortedGPA(false);
+		//call sort function passed down through props
+		sortLName();
+	}
+	const onGpaSort = ()=> {
+		//adjust all states accordingly
+		setSortedFirst(false);
+		setSortedLast(false);
+		setSortedCampus(false);
+		setSortedGPA(true);
+		//call sort function passed down through props
+		sortGPA();
+	}
+	//THIS function only works if ALL the students have a campus, otherwise it tries to sort unassigned students by a field they don't have, and I didn't have enough time and/or brains to figure out away around that problem.
+	const onCampusSort = ()=> {
+		setSortedFirst(false);
+		setSortedLast(false);
+		setSortedCampus(true);
+		setSortedGPA(false);
+		sortByCampus();
+	}
+  
+	//JSX should render...
   return (
     <div>
 			{/*...a button that will toggle the add menu */}
@@ -26,6 +66,36 @@ const Students = ({ list, onAdd }) => {
 			<div className='pre-CSS-spacer'>
 				<p></p>
 			</div>
+			{/*...a menu bar with sort options */}	
+			<div>
+				Sort Students By:
+				<div className='buttons-bar'>
+					<Button 
+						text='First Name'
+						textColor={sortedFirst ? 'silver' : 'black'}
+						backColor={sortedFirst ? 'gray' : 'silver'}
+						onClick={onFNameSort}
+					/>
+					<Button 
+						text='Last Name'
+						textColor={sortedLast ? 'silver' : 'black'}
+						backColor={sortedLast ? 'gray' : 'silver'}
+						onClick={onLNameSort}
+					/>
+					<Button 
+						text='GPA'
+						textColor={sortedGPA ? 'silver' : 'black'}
+						backColor={sortedGPA ? 'gray' : 'silver'}
+						onClick={onGpaSort}
+					/>
+					<Button 
+						text='Campus'
+						textColor={sortedCampus ? 'silver' : 'black'}
+						backColor={sortedCampus ? 'gray' : 'silver'}
+						onClick={onCampusSort}
+					/>
+				</div>
+			</div>
 			{/*...and a list of all the students as links to their individual pages */}
       {list.map(student=>{
         return (
@@ -36,6 +106,7 @@ const Students = ({ list, onAdd }) => {
 						<Link to={`/students/${student.id}`}>
 							{student.firstName} {student.lastName}
 						</Link>
+						{/*I had to display this next element conditionally so that the page didn't try to find a property that didn't exist and crash the app */}
 						{student?.campus?.id ?
 							<span> 
 								<span className='spacer'> </span>
@@ -46,8 +117,11 @@ const Students = ({ list, onAdd }) => {
 							  </Link> 
 								<span className='spacer'> </span>
 								Campus
-							</span> : <span></span>}
-						{/* I KNOW THE RUBRIC SAYS THE DELETE BUTTON BELONGS HERE, BUT IT DOESN'T MAKE ANY SENSE TO ME TO HAVE IT HERE INSTEAD OF ON THE EDIT STUDENT PAGE. SO HERE'S THE CODE TO PROVE THAT I KNOW HOW TO PUT IT HERE. BUT THE FUNCTIONAL ONE LIVES IN './UpdateStudent.js' NOW. 
+							</span> 
+							: 
+							<span></span>
+						}
+						{/* I KNOW THE RUBRIC SAYS THE DELETE BUTTON BELONGS HERE, BUT IT DOESN'T MAKE ANY SENSE TO ME TO HAVE IT HERE INSTEAD OF ON THE EDIT STUDENT PAGE. SO HERE'S THE CODE TO PROVE THAT I KNOW HOW TO PUT IT HERE. BUT THE FUNCTIONALITY NOW LIVES IN './UpdateStudent.js'. 
 						<Button 
 							text={'X'}
 							onClick={()=> onDelete(student.id)} 
@@ -57,7 +131,6 @@ const Students = ({ list, onAdd }) => {
           </div>
 				)
       })}
-
     </div>
   )
 };

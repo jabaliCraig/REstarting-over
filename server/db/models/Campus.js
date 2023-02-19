@@ -22,7 +22,7 @@ const Campus = db.define('campus', {
 	},
 	description: {
 		type: Sequelize.TEXT,
-	}
+	},
 });
 
 module.exports = Campus

@@ -7,7 +7,6 @@ const { Campus, Student } = require('../db')
 //🌟C🌟reate:
 router.post('/', async (req, res) => {
 	let { firstName, lastName, email, gpa, imageUrl } = req.body;
-	
   Student.create({
 		email,
     firstName,
@@ -57,7 +56,6 @@ router.put('/:id', async (req, res, next) => {
     next(error);
   }
 });
-///////////////////
 
 //🌟D🌟emolish:
 router.delete('/:id', async (req, res, next) => {
@@ -66,7 +64,7 @@ router.delete('/:id', async (req, res, next) => {
 		res.sendStatus(400);
 		return
 	}
-	//Felicia is the student to be deleted.  Bye, Felicia!
+	//assign Felicia as the student to be deleted.  Bye, Felicia!
 	const Felicia = await Student.findByPk(id);
   try {
     await Felicia.destroy();

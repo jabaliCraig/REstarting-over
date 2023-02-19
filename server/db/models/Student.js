@@ -33,8 +33,8 @@ const Student = db.define('student', {
 		validate: {
 			min: 0.0,
 			max: 4.0,
-		}
-	}
+		},
+	},
 });
 
 module.exports = Student

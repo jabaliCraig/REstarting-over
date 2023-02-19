@@ -5,7 +5,7 @@ const Nav = () => {
 	return (
 		<div className='navbar'>
 			<Link to='/students'>Students</Link>
-			<span className='pre-CSS-spacer'>    </span>
+			<span className='spacer'> </span>
 			<Link to='/campuses'>Campuses</Link>
 			<div className='pre-CSS-spacer'>
 				<p></p>

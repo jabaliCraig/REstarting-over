@@ -10,7 +10,6 @@ import EnrollmentForm from './EnrollmentForm';
 const SingleStudent = ({ list, onDelete, onEdit }) => {
   //...declare THIS student as THE student, based on the url
 	const student = list.filter(student => student.id === Number(useParams().id))[0];
-
 	//...set local state to a Boolean determinging whether or not the UPDATE and ENROLL forms appear
 	const [showEdit, setShowEdit] = useState(false);
 	const [showEnroll, setShowEnroll] = useState(false);
@@ -39,30 +38,36 @@ const SingleStudent = ({ list, onDelete, onEdit }) => {
 			{/* all the details of this students*/}
 			<div className='student-card'>
 				<div className='card-top'>
-					<img src={student.imageUrl} alt='A lovely image of our student'/>
+					<img 
+					  src={student.imageUrl} 
+						alt='A lovely image of our student'
+					/>
 					<h1>{student.firstName} {student.lastName}</h1>
 				</div>
 				<div className='info'>
-					Email: <span style={{fontWeight: 'bold'}}>{student.email}</span>
-					
+					Email: 
+					<span style={{fontWeight: 'bold'}}>{student.email}</span>
 				</div>
 				<div className='pre-CSS-spacer'>
 					<p></p>
 				</div>	
 				<div className='card-banner'>
-					<span>Campus: {student.campusId ? 
-					  <Link to={`/campuses/${student.campusId}`}>
-							{student.campus.name}
-						</Link> :
-						<div>
-							<Button 
-								text={showEnroll ? 'sucka!' : "Enroll student now?"}
-								onClick={()=> setShowEnroll(!showEnroll)} 
-								textColor={showEnroll ? 'silver' : 'black'}
-								backColor={showEnroll ? 'black' : 'silver'}
-							/>
-						  {showEnroll && <EnrollmentForm student={student} />}
-						</div>
+					<span>
+						Campus: 
+						{student.campusId ? 
+							<Link to={`/campuses/${student.campusId}`}>
+								{student.campus.name}
+							</Link> 
+							:
+							<div>
+								<Button 
+									text={showEnroll ? 'Sorry!' : "Enroll student now?"}
+									onClick={()=> setShowEnroll(!showEnroll)} 
+									textColor={showEnroll ? 'silver' : 'black'}
+									backColor={showEnroll ? 'black' : 'silver'}
+								/>
+								{showEnroll && <EnrollmentForm student={student} />}
+							</div>
 						}				
 					</span>
 					<span> </span>GPA: {student.gpa}

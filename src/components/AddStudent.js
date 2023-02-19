@@ -18,7 +18,6 @@ const AddStudent = ({ onAdd }) => {
 		}
 		//...create a new object from input fields (stored from the form as state variables)
 		const newStudent = { firstName, lastName, email, gpa, imageUrl }
-		console.log(newStudent)
 		//...run the onAdd function with the new student object passed in
 		onAdd(newStudent);
 		//...and reset the form
@@ -28,35 +27,68 @@ const AddStudent = ({ onAdd }) => {
 		setGPA('');
 		setImageUrl('');
 	}
-	//JSX should return the form with a 'form-control' section for each input field and a submit button
+
+	//JSX should return the form with a 'form-control' section for... 
 	return (
-		<form className='add-form' onSubmit={onSubmit}>
+		<form 
+		  className='add-form' 
+			onSubmit={onSubmit}
+		>
+			{/*...first name */}
 			<div className='form-control'>
 				<label>Student's First Name</label>
-				<input type='text' placeholder='**REQUIRED**' value={firstName} onChange={(e)=> setFirstName(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='**REQUIRED**' 
+					value={firstName} 
+					onChange={(e)=> setFirstName(e.target.value)} 
+			  />
 			</div>
-
+			{/*...last name */}
 			<div className='form-control'>
 				<label>Student's Last Name</label>
-				<input type='text' placeholder='**REQUIRED**' value={lastName} onChange={(e)=> setLastName(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='**REQUIRED**' 
+					value={lastName} 
+					onChange={(e)=> setLastName(e.target.value)} 
+				/>
 			</div>
-
+			{/*...email */}
 			<div className='form-control'>
 				<label>Student's Email</label>
-				<input type='text' placeholder='**REQUIRED**' value={email} onChange={(e)=> setEmail(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='**REQUIRED**' 
+					value={email} 
+					onChange={(e)=> setEmail(e.target.value)} 
+				/>
 			</div>
-
+			{/*...GPA */}
 			<div className='form-control'>
 				<label>Student's GPA</label>
-				<input type='text' placeholder='(optional)' value={gpa} onChange={(e)=> setGPA(e.target.value)} />
+				<input 
+				type='text' 
+				placeholder='(optional)' 
+				value={gpa} 
+				onChange={(e)=> setGPA(e.target.value)} 
+			/>
 			</div>
-
+			{/*...image URL */}
 			<div className='form-control'>
 				<label>Student's Image URL</label>
-				<input type='text' placeholder='(optional)' value={imageUrl} onChange={(e)=> setImageUrl(e.target.value)} />
+				<input 
+				  type='text' 
+					placeholder='(optional)' 
+					value={imageUrl} 
+					onChange={(e)=> setImageUrl(e.target.value)} 
+				/>
 			</div>
-
-			<input type='submit' value='Save' />
+			{/*...and a submit button down at the very bottom🔘 */}
+			<input 
+			  type='submit' 
+				value='Save' 
+			/>
 		</form>
 	)
 }

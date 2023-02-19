@@ -20,142 +20,45 @@ const Main = () => {
 		fetchAndSetCampuses();
 		fetchAndSetStudents();
 	}, [])
-  //...declare a bunch of CRUD!
-	
+	//...have some sort functions to display the data in a particular way (#LIFEGOALS: get this function to sort the opposite way if it's been called once before)...I TRIED to do it, but failed.
+	//(for campuses)
+	const sortCampusName = ()=> setCampusList(campusList.sort((a, b)=> a.name.localeCompare(b.name)));
+	const sortEnroll = ()=> setCampusList(campusList.sort((a, b)=> b.students.length - a.students.length));
+	//(for students)
+	const sortFName = ()=> setStudentList(studentList.sort((a, b)=> a.firstName.localeCompare(b.firstName)));
+	const sortLName = ()=> setStudentList(studentList.sort((a, b)=> a.lastName.localeCompare(b.lastName)));
+	const sortByCampus = ()=> setStudentList(studentList.sort((a, b)=> a.campus.name.localeCompare(b.campus.name)));
+	const sortGPA = ()=> setStudentList(studentList.sort((a, b)=> b.gpa - a.gpa));
+
+  //...declare a bunch of 🌟CRUD🌟!
   //🌟C🌟reate:
 	const addCampus = async(campus)=> {
 		try{
 			//Here's the BRAIN-BUSTER:
 			let newCampus = await axios.post('/api/campuses', campus)
-			/*Gives me these errors in the browser Dev Tools:
-AxiosError {message: 'Network Error', name: 'AxiosError', code: 'ERR_NETWORK', config: {…}, request: XMLHttpRequest, …}code: "ERR_NETWORK"config: {transitional: {…}, transformRequest: Array(1), transformResponse: Array(1), timeout: 0, adapter: ƒ, …}message: "Network Error"name: "AxiosError"request: XMLHttpRequest {data: undefined, onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, …}response: XMLHttpRequest {data: undefined, onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, …}[[Prototype]]: Error
-
-          POST http://localhost:3000/api/campuses net::ERR_EMPTY_RESPONSE
-dispatchXhrRequest @ xhr.js:220
-xhrAdapter @ xhr.js:16
-dispatchRequest @ dispatchRequest.js:58
-request @ Axios.js:109
-httpMethod @ Axios.js:144
-wrap @ bind.js:9
-_callee$ @ Main.js:29
-tryCatch @ Main.js:2
-(anonymous) @ Main.js:2
-(anonymous) @ Main.js:2
-asyncGeneratorStep @ Main.js:2
-_next @ Main.js:2
-(anonymous) @ Main.js:2
-(anonymous) @ Main.js:2
-addCampus @ Main.js:26
-onSubmit @ AddCampus.js:19
-callCallback @ react-dom.development.js:4164
-invokeGuardedCallbackDev @ react-dom.development.js:4213
-invokeGuardedCallback @ react-dom.development.js:4277
-invokeGuardedCallbackAndCatchFirstError @ react-dom.development.js:4291
-executeDispatch @ react-dom.development.js:9041
-processDispatchQueueItemsInOrder @ react-dom.development.js:9073
-processDispatchQueue @ react-dom.development.js:9086
-dispatchEventsForPlugins @ react-dom.development.js:9097
-(anonymous) @ react-dom.development.js:9288
-batchedUpdates$1 @ react-dom.development.js:26140
-batchedUpdates @ react-dom.development.js:3991
-dispatchEventForPluginEventSystem @ react-dom.development.js:9287
-dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ react-dom.development.js:6465
-dispatchEvent @ react-dom.development.js:6457
-dispatchDiscreteEvent @ react-dom.development.js:6430
-
-
-			
-
-
-
-
-
-
 			/*...or something like that. The problem is that I can't get this to update the database, no matter what I try.🧠💥💨
 			BUT if it had updated the database, then obviously, I would run these next:		
 			fetchAndSetCampuses();
 			fetchAndSetStudents();
 			Since it doesn't, I'll just use wizard magic to make it look like the object was added. That way, when you click on it, the entire app will crash.👍🏻*/
-			setCampusList([...campusList, JSON.parse(newCampus.config.data)]);
+			setCampusList([...campusList, campus]);
 		}
 		catch(err){
 			console.log(err);
 		}
 	}
-
-
-
-
-
-
-
 	const addStudent = async(student)=> {
 		// ⬆️SEE NOTES ON `addCampus` ABOVE⬆️
 		try{
 			const newStudent = await axios.post('/api/students', student);
 			// fetchAndSetCampuses();
 			// fetchAndSetStudents();
-			setStudentList([...studentList, JSON.parse(newStudent.config.data)])
+			setStudentList([...studentList, student])
 		}
 		catch(err){
 			console.log(err);
 		}
-	}/*RESULTS IN:
-	uSfc <—— 304 Not Modified (<—> 1.9 ms)
-/Users/thecraggle/Fullstack/REstarting-over/server/api/students.js:9
-        let { firstName, lastName, email, gpa, imageUrl } = req.body;
-              ^
-
-TypeError: Cannot destructure property 'firstName' of 'req.body' as it is undefined.
-    at /Users/thecraggle/Fullstack/REstarting-over/server/api/students.js:9:8
-    at Layer.handle [as handle_request] (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/layer.js:95:5)
-    at next (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/route.js:144:13)
-    at Route.dispatch (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/route.js:114:3)
-    at Layer.handle [as handle_request] (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/layer.js:95:5)
-    at /Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/index.js:284:15
-    at Function.process_params (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/index.js:346:12)
-    at next (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/index.js:280:10)
-    at Function.handle (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/index.js:175:3)
-    at router (/Users/thecraggle/Fullstack/REstarting-over/node_modules/express/lib/router/index.js:47:12)
-
-Node.js v18.12.1
-[nodemon] app crashed - waiting for file changes before starting...
-
-&&
-
-xhr.js:220          POST http://localhost:3000/api/students net::ERR_EMPTY_RESPONSE
-dispatchXhrRequest @ xhr.js:220
-xhrAdapter @ xhr.js:16
-dispatchRequest @ dispatchRequest.js:58
-request @ Axios.js:109
-httpMethod @ Axios.js:144
-wrap @ bind.js:9
-_callee2$ @ Main.js:96
-tryCatch @ Main.js:2
-(anonymous) @ Main.js:2
-(anonymous) @ Main.js:2
-asyncGeneratorStep @ Main.js:2
-_next @ Main.js:2
-(anonymous) @ Main.js:2
-(anonymous) @ Main.js:2
-addStudent @ Main.js:92
-onSubmit @ AddStudent.js:23
-callCallback @ react-dom.development.js:4164
-invokeGuardedCallbackDev @ react-dom.development.js:4213
-invokeGuardedCallback @ react-dom.development.js:4277
-invokeGuardedCallbackAndCatchFirstError @ react-dom.development.js:4291
-executeDispatch @ react-dom.development.js:9041
-processDispatchQueueItemsInOrder @ react-dom.development.js:9073
-processDispatchQueue @ react-dom.development.js:9086
-dispatchEventsForPlugins @ react-dom.development.js:9097
-(anonymous) @ react-dom.development.js:9288
-batchedUpdates$1 @ react-dom.development.js:26140
-batchedUpdates @ react-dom.development.js:3991
-dispatchEventForPluginEventSystem @ react-dom.development.js:9287
-dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ react-dom.development.js:6465
-dispatchEvent @ react-dom.development.js:6457
-dispatchDiscreteEvent @ react-dom.development.js:6430
-*/
+	}
 
 	//🌟R🌟ead:
 	const fetchAndSetCampuses = async()=> {
@@ -168,47 +71,42 @@ dispatchDiscreteEvent @ react-dom.development.js:6430
 	}
 	
   //🌟U🌟pdate:
-	const editCampus = (id)=> {
-		console.log('You would like to edit the event to be: ', id);
-		console.log('TOO BAD, SUCKA!!!!!')
-		fetchAndSetCampuses();
-		fetchAndSetStudents();
-	}
-
-
-
-
-
-
-
-	const editStudent = async (student)=> {
+	const editCampus = async (campus)=> {
+		console.log('Could not successfully get any PUT functionality');		
 		try{
-		await axios.put(student);
+			await axios.put(`/api/campuses/${campus.id}`, campus);
+			}
+			catch(err){
+				console.log(err)
+			}
+			fetchAndSetCampuses();
+			fetchAndSetStudents();
+	}
+	const editStudent = async (student)=> {
+		console.log('Could not successfully get any PUT functionality');	
+		try{
+		await axios.put(`/api/students/${student.id}`, student);
 		}
 		catch(err){
-			console.log('WHOOPSIES!!!')
 			console.log(err)
 		}
-		// fetchAndSetCampuses();
-		// fetchAndSetStudents();
-	}/*RESULTS IN:
-
-	*/
-
-
-
-
-
-
-
+		fetchAndSetCampuses();
+		fetchAndSetStudents();
+	}
 	//disenroll student from campus
-	const disenroll = (id)=> {
-		console.log('Pretend we did something so that the student with this id is no longer at this campus:', id)
+	const disenroll = async (student)=> {
+		console.log('Could not successfully get any PUT functionality');
+		try{
+			await axios.put(`/api/students/${student.id}`, student);
+		}
+		catch(err){
+				console.log(err)
+		}	
 		fetchAndSetCampuses();
 		fetchAndSetStudents();
 	}
 
-	//🌟D🌟emolerize!:
+	//🌟D🌟elete:
 	const deleteCampus = async(id)=> {
 		await axios.delete(`/api/campuses/${id}`);
 		console.log('A campus has been deleted.');
@@ -239,6 +137,8 @@ dispatchDiscreteEvent @ react-dom.development.js:6430
 						  list={campusList} 
 							onAdd={addCampus} 
 							onDelete={deleteCampus}
+							sortCampusName={sortCampusName}
+							sortEnroll={sortEnroll}
 						/>} 
 					/>
 					<Route 
@@ -246,7 +146,10 @@ dispatchDiscreteEvent @ react-dom.development.js:6430
 						element={<Students 
 						  list={studentList} 
 							onAdd={addStudent} 
-							// onDelete={deleteStudent} > SEE NOTE IN 'SingleStudent.js'
+							sortFName={sortFName}
+							sortLName={sortLName}
+							sortByCampus={sortByCampus}
+							sortGPA={sortGPA}
 						/>} 
 					/>
 					<Route 

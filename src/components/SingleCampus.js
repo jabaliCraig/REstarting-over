@@ -10,7 +10,6 @@ import Button from './Button';
 const SingleCampus = ({ list, onDelete, onEdit, onRemove }) => {
   //...declare THIS campus as THE campus, based on the url
 	const campus = list.filter(campus => campus.id === Number(useParams().id))[0];
-
 	//...set local state to a Boolean determining whether or not the UPDATE form appears
 	const [showEdit, setShowEdit] = useState(false);
   
@@ -30,7 +29,8 @@ const SingleCampus = ({ list, onDelete, onEdit, onRemove }) => {
 					campus={campus}
 					onDelete={onDelete}
 					onEdit={onEdit}
-				/>}
+				/>
+			}
 			{/* some pre-CSS spacing that I'll hopefully remember to take away later */}
 			<div className='pre-CSS-spacer'>
 				<p></p>
@@ -41,18 +41,28 @@ const SingleCampus = ({ list, onDelete, onEdit, onRemove }) => {
 					<img src={campus.imageUrl} />
 					<h1>{campus.name}</h1>
 				</div>
-				<p>Address: <span style={{fontWeight: 'bold'}}>{campus.address}</span></p>
-				<p>Enrollment: <span style={{fontWeight: 'bold'}}>{campus.students.length}</span></p>
-				</div>
+				<p>
+					Address: 
+					<span style={{fontWeight: 'bold'}}>
+						{campus.address}
+					</span>
+				</p>
+				<p>
+					Enrollment: 
+					<span style={{fontWeight: 'bold'}}>
+						{campus.students.length}
+					</span>
+				</p>
 				<div className='info'>
 					{campus.description}
 				</div>
 				{/* AND all the students enrolled in this campus!*/}
 				<CampusEnrollment 
-				  campus={campus}
+					campus={campus}
 					onRemove={onRemove}
-					/>
+				/>
 			</div>
+		</div>
 	)
 }
 

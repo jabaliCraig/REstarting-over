@@ -1,1 +1,13 @@
 export {default as Main} from './Main.js'
+//my website did everything it does now before I added all these things... but that top line looked real lonely by itself
+export {default as Nav} from './Nav'
+export {default as Button} from './Button'
+	export {default as Landing} from './Landing'
+	export {default as Campuses} from './Campuses'
+			export {default as SingleCampus} from './SingleCampus'
+			export {default as UpdateCampus} from './UpdateCampus'
+			export {default as CampusEnrollment} from './CampusEnrollment'
+	export {default as Students} from './Students'
+			export {default as SingleStudent} from './SingleStudent'
+			export {default as UpdateStudent} from './UpdateStudent'
+			export {default as EnrollmentForm} from './EnrollmentForm'

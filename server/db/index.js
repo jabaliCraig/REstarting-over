@@ -12,10 +12,6 @@ Campus.myFindAll = async()=> {
 	return campuses;
 }
 
-// Campus.findVacant = async()=> {
-// 	//look through the students and return any CAMPUS whose id does not show up in the students
-// }
-
 Student.myFindAll = async()=> {
 	const students = await Student.findAll({
 	  include: Campus
